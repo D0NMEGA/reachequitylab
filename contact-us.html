@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | REACH Equity Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/jpeg" href="/public/reach-icon.jpg" />
+  <link rel="apple-touch-icon" href="/public/reach-icon.jpg" />
+  <meta name="theme-color" content="#113b78" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" data-transition>
+        <img src="/public/icon-banner-transparent.png" alt="REACH Equity Lab" class="brand-logo" />
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="about.html" data-transition>About Us</a>
+        <a href="team.html" data-transition>Team</a>
+        <a href="publications.html" data-transition>Publications</a>
+        <a href="events.html" data-transition>Events</a>
+        <a href="contact.html" data-transition>Connect</a>
+        <a href="contact-us.html" data-transition class="nav-cta active">Contact Us</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container form-centered">
+      <section class="card reveal">
+        <h1>Contact Us</h1>
+        <p>Send us an email using the form below.</p>
+        <form id="contactForm" class="contact-form">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+
+          <button class="btn" type="submit">Send</button>
+          <p class="form-confirm" id="formConfirm" style="display:none;">Thank you — your message has been received. We'll get back to you soon.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span id="year"></span> REACH Equity Lab</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noreferrer">X / Twitter</a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

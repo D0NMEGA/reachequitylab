@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REACH Equity Lab | Home</title>
+  <meta name="description" content="REACH Equity Lab advances undergraduate research on racial, wage, and health disparities." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/jpeg" href="/public/reach-icon.jpg" />
+  <link rel="apple-touch-icon" href="/public/reach-icon.jpg" />
+  <meta name="theme-color" content="#113b78" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" data-transition>
+        <img src="/public/icon-banner-transparent.png" alt="REACH Equity Lab" class="brand-logo" />
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="about.html" data-transition>About Us</a>
+        <a href="team.html" data-transition>Team</a>
+        <a href="publications.html" data-transition>Publications</a>
+        <a href="events.html" data-transition>Events</a>
+        <a href="contact.html" data-transition>Connect</a>
+        <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-video">
+      <video class="hero-video-bg" autoplay muted loop playsinline poster="/public/reach-banner.png">
+        <source src="/public/videos/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-video-overlay"></div>
+      <div class="container hero-video-content reveal">
+        <h1>Where Research Meets Reach</h1>
+        <p>
+          REACH Equity Lab is focused on undergraduate research addressing health disparities
+          tied to racial, wage, and healthcare gaps.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-white" href="publications.html" data-transition>Read Our Research</a>
+          <a class="btn btn-outline-white" href="about.html" data-transition>Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Research Focus</h2>
+        </div>
+        <div class="cards three-col">
+          <article class="card reveal">
+            <h3>Racial Gaps</h3>
+            <p>Investigating structural causes and outcomes of racial inequities in access and care quality.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Wage Gaps</h3>
+            <p>Studying how income constraints shape care decisions, treatment adherence, and long-term outcomes.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Health Gaps</h3>
+            <p>Quantifying and communicating disparities in chronic conditions, prevention, and healthcare utilization.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split reveal">
+        <div>
+          <h2>Featured Paper</h2>
+          <h3>Comorbidity and Medication Misuse for Financial Reasons</h3>
+          <p>
+            Our first paper explores comorbidity patterns and medication misuse linked to financial barriers.
+            We analyze how cost pressure affects adherence behavior across vulnerable populations.
+          </p>
+          <a class="btn" href="publications.html" data-transition>View Publication Details</a>
+        </div>
+        <aside class="stat-card">
+          <p class="stat-label">Current Priority</p>
+          <p class="stat-number">1st Paper</p>
+          <p class="stat-small">Equity-focused evidence for actionable policy and community impact.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span id="year"></span> REACH Equity Lab</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noreferrer">X / Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
