@@ -7,14 +7,11 @@ const corsHeaders = {
 
 /* Token-to-name mapping -- each person gets a unique unguessable token */
 const TOKEN_MAP = {
-  /* ── TEST token -- delete after testing ── */
   'test000000': { name: 'TestUser', test: true },
-
-  /* ── Real tokens -- uncomment when ready ── */
-  // 'a7f3e1b9c4d2': { name: 'Aryan' },
-  // 'e8d2c6a1f5b3': { name: 'Anay' },
-  // 'b4c9f7e3a6d1': { name: 'Samar' },
-  // 'd1a5b8c2e9f4': { name: 'Arjun' },
+  'a7f3e1b9c4d2': { name: 'Aryan' },
+  'e8d2c6a1f5b3': { name: 'Anay' },
+  'b4c9f7e3a6d1': { name: 'Samar' },
+  'd1a5b8c2e9f4': { name: 'Arjun' },
 };
 
 const NOTIFY_RECIPIENTS = [
