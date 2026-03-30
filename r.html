@@ -11,13 +11,206 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="icon" type="image/jpeg" href="/public/reach-icon.jpg" />
   <style>
+    /* ── Landing state ─────────────────────────────────────── */
+    .landing-content {
+      min-height: calc(100vh - 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      background: var(--white);
+    }
+    .landing-card {
+      text-align: center;
+      max-width: 540px;
+    }
+    .landing-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--blue-900);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .landing-card p {
+      color: var(--text-700);
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .click-here-link {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--teal-500);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 200ms ease, color 200ms ease;
+      cursor: pointer;
+    }
+    .click-here-link:hover {
+      color: var(--blue-900);
+      border-bottom-color: var(--blue-900);
+    }
+
+    /* ── Envelope overlay ──────────────────────────────────── */
+    .envelope-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(31, 58, 95, 0);
+      pointer-events: none;
+      transition: background 600ms ease;
+    }
+    .envelope-overlay.active {
+      pointer-events: all;
+      background: rgba(31, 58, 95, 0.35);
+    }
+
+    .envelope-scene {
+      position: relative;
+      width: 280px;
+      height: 200px;
+      transform: translateY(120vh);
+      transition: transform 900ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .envelope-scene.rise {
+      transform: translateY(0);
+    }
+
+    /* Envelope body */
+    .envelope-body {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 280px;
+      height: 160px;
+      background: linear-gradient(135deg, #1f3a5f 0%, #163047 100%);
+      border-radius: 0 0 14px 14px;
+      z-index: 3;
+      box-shadow: 0 8px 32px rgba(31, 58, 95, 0.35);
+    }
+
+    /* Inner V fold on front */
+    .envelope-body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 140px solid rgba(255, 255, 255, 0.06);
+      border-right: 140px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 80px solid transparent;
+      z-index: 1;
+    }
+
+    /* REACH logo on envelope */
+    .envelope-logo {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: auto;
+      opacity: 0.9;
+      z-index: 2;
+      border-radius: 6px;
+    }
+
+    /* Flap (top triangle) */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 140px solid transparent;
+      border-right: 140px solid transparent;
+      border-top: 100px solid #2a5080;
+      z-index: 5;
+      transform-origin: top center;
+      transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .envelope-flap.open {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    /* Letter inside */
+    .envelope-letter {
+      position: absolute;
+      left: 20px;
+      bottom: 10px;
+      width: 240px;
+      height: 180px;
+      background: var(--white);
+      border-radius: 8px;
+      z-index: 2;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transform: translateY(0);
+      transition: transform 800ms cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+    .envelope-letter.emerge {
+      transform: translateY(-220px);
+    }
+    .envelope-letter .letter-seal {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-500), var(--blue-900));
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+    .envelope-letter .letter-seal span {
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .envelope-letter .letter-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      width: 100%;
+    }
+    .envelope-letter .letter-line {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--blue-200);
+    }
+    .envelope-letter .letter-line:nth-child(1) { width: 80%; }
+    .envelope-letter .letter-line:nth-child(2) { width: 60%; }
+    .envelope-letter .letter-line:nth-child(3) { width: 70%; }
+
+    /* Fade out the whole envelope scene */
+    .envelope-scene.fade-out {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 500ms ease, transform 500ms ease;
+    }
+
+    /* ── Offer page (replaces landing) ─────────────────────── */
     .offer-wrap {
-      min-height: 100vh;
+      min-height: calc(100vh - 140px);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 40px 20px;
       background: var(--blue-200);
+      opacity: 0;
+      transition: opacity 600ms ease;
+    }
+    .offer-wrap.visible {
+      opacity: 1;
     }
     .offer-card {
       background: var(--white);
@@ -27,8 +220,13 @@
       width: 100%;
       text-align: center;
       box-shadow: 0 8px 32px rgba(31, 58, 95, 0.12);
-      position: relative;
-      overflow: hidden;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 600ms ease 100ms, opacity 600ms ease 100ms;
+    }
+    .offer-wrap.visible .offer-card {
+      transform: translateY(0);
+      opacity: 1;
     }
     .offer-card h1 {
       font-family: 'Playfair Display', serif;
@@ -126,6 +324,8 @@
       display: grid;
       place-items: center;
       font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--blue-900);
       flex-shrink: 0;
     }
     .resource-link strong {
@@ -174,7 +374,7 @@
       text-align: center;
     }
 
-    /* Confetti canvas */
+    /* ── Confetti canvas ───────────────────────────────────── */
     #confetti-canvas {
       position: fixed;
       top: 0;
@@ -184,104 +384,188 @@
       pointer-events: none;
       z-index: 1000;
     }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .envelope-scene { width: 220px; height: 160px; }
+      .envelope-body { width: 220px; height: 130px; }
+      .envelope-body::before {
+        border-left-width: 110px;
+        border-right-width: 110px;
+        border-bottom-width: 65px;
+      }
+      .envelope-flap {
+        border-left-width: 110px;
+        border-right-width: 110px;
+        border-top-width: 80px;
+      }
+      .envelope-letter { left: 15px; width: 190px; height: 150px; }
+      .envelope-letter.emerge { transform: translateY(-180px); }
+      .offer-card { padding: 32px 24px; }
+      .offer-card h1 { font-size: 1.7rem; }
+    }
   </style>
 </head>
 <body>
   <canvas id="confetti-canvas"></canvas>
 
-  <div class="offer-wrap">
-    <!-- Invalid / loading state -->
-    <div id="invalidState" class="offer-card invalid-state" style="display:none;">
-      <h1>Link Not Found</h1>
-      <p>This link is invalid or has expired.</p>
-      <a class="btn" href="index.html">Go to Home</a>
+  <!-- ── Site header (same as landing) ──────────────────── -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" data-transition>
+        <img src="/public/icon-banner-transparent.png" alt="REACH Equity Lab" class="brand-logo" />
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="about.html" data-transition>About Us</a>
+        <a href="team.html" data-transition>Team</a>
+        <a href="publications.html" data-transition>Publications</a>
+        <a href="events.html" data-transition>Events</a>
+        <a href="contact.html" data-transition>Connect</a>
+        <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
     </div>
+  </header>
 
-    <!-- Main offer card -->
-    <div id="offerCard" class="offer-card" style="display:none;">
-      <div class="offer-badge">Application Update</div>
-      <h1 id="greeting"></h1>
-      <p class="subtitle">REACH Equity Lab -- Spring 2026</p>
-      <p>
-        After careful review of your application, we are pleased to inform you that you have been
-        <strong>selected to join the REACH Equity Lab</strong> research team.
-      </p>
-      <p>
-        Your background and interests align well with our mission to advance undergraduate
-        research on health disparities. We are excited about the contributions you will bring
-        to our work.
-      </p>
-      <p>
-        Please confirm your decision below. Once you respond, this link will be deactivated.
-      </p>
-
-      <div id="offerActions" class="offer-actions">
-        <button class="btn btn-accept" id="btnAccept" onclick="respond('accept')">Accept Offer</button>
-        <button class="btn btn-decline" id="btnDecline" onclick="respond('decline')">Decline</button>
-      </div>
-
-      <div id="loadingState" class="loading-state">Processing your response...</div>
-      <div id="statusMsg" style="display:none;"></div>
-
-      <div id="resources" class="resources" style="display:none;">
-        <h3>Get started -- bookmark and star these folders:</h3>
-        <a class="resource-link" href="https://discord.gg/W6BTV5Pqy" target="_blank" rel="noopener">
-          <div class="r-icon">D</div>
-          <div>
-            <strong>REACH Discord Server</strong>
-            <span>Team communication and updates</span>
-          </div>
-        </a>
-        <a class="resource-link" href="https://utexas.box.com/s/5kledxwf0o15le1gfnq5c96gfyg6m0pz" target="_blank" rel="noopener">
-          <div class="r-icon">B</div>
-          <div>
-            <strong>UT Box Drive</strong>
-            <span>Star this folder for quick access</span>
-          </div>
-        </a>
-        <a class="resource-link" href="https://drive.google.com/drive/folders/1LE0Mknn_3d9yqtK6n442ig6YU2WHqAU1?usp=sharing" target="_blank" rel="noopener">
-          <div class="r-icon">G</div>
-          <div>
-            <strong>Google Drive</strong>
-            <span>Star this folder for quick access</span>
-          </div>
-        </a>
+  <!-- ── Phase 1: Landing with "Click Here" ────────────── -->
+  <main>
+    <div id="landingView" class="landing-content">
+      <div class="landing-card reveal">
+        <h2>You have an update on your REACH Equity Lab application</h2>
+        <p>We have finished reviewing applications for the Spring 2026 cohort. Please check below for your status.</p>
+        <a class="click-here-link" id="openEnvelope">Click Here</a>
       </div>
     </div>
 
-    <!-- Already responded state -->
-    <div id="alreadyCard" class="offer-card" style="display:none;">
-      <h1 id="alreadyGreeting"></h1>
-      <div id="alreadyMsg" class="status-msg status-already"></div>
-      <div id="alreadyResources" class="resources" style="display:none;">
-        <h3>Your team resources:</h3>
-        <a class="resource-link" href="https://discord.gg/W6BTV5Pqy" target="_blank" rel="noopener">
-          <div class="r-icon">D</div>
-          <div>
-            <strong>REACH Discord Server</strong>
-            <span>Team communication and updates</span>
-          </div>
-        </a>
-        <a class="resource-link" href="https://utexas.box.com/s/5kledxwf0o15le1gfnq5c96gfyg6m0pz" target="_blank" rel="noopener">
-          <div class="r-icon">B</div>
-          <div>
-            <strong>UT Box Drive</strong>
-            <span>Star this folder for quick access</span>
-          </div>
-        </a>
-        <a class="resource-link" href="https://drive.google.com/drive/folders/1LE0Mknn_3d9yqtK6n442ig6YU2WHqAU1?usp=sharing" target="_blank" rel="noopener">
-          <div class="r-icon">G</div>
-          <div>
-            <strong>Google Drive</strong>
-            <span>Star this folder for quick access</span>
-          </div>
-        </a>
+    <!-- ── Phase 3: Offer card (hidden until envelope animation completes) ── -->
+    <div id="offerView" class="offer-wrap" style="display:none;">
+      <!-- Invalid state -->
+      <div id="invalidState" class="offer-card invalid-state" style="display:none;">
+        <h1>Link Not Found</h1>
+        <p>This link is invalid or has expired.</p>
+        <a class="btn" href="index.html">Go to Home</a>
+      </div>
+
+      <!-- Main offer card -->
+      <div id="offerCard" class="offer-card" style="display:none;">
+        <div class="offer-badge">Application Update</div>
+        <h1 id="greeting"></h1>
+        <p class="subtitle">REACH Equity Lab -- Spring 2026</p>
+        <p>
+          After careful review of your application, we are pleased to inform you that you have been
+          <strong>selected to join the REACH Equity Lab</strong> research team.
+        </p>
+        <p>
+          Your background and interests align well with our mission to advance undergraduate
+          research on health disparities. We are excited about the contributions you will bring
+          to our work.
+        </p>
+        <p>
+          Please confirm your decision below. Once you respond, this link will be deactivated.
+        </p>
+
+        <div id="offerActions" class="offer-actions">
+          <button class="btn btn-accept" id="btnAccept" onclick="respond('accept')">Accept Offer</button>
+          <button class="btn btn-decline" id="btnDecline" onclick="respond('decline')">Decline</button>
+        </div>
+
+        <div id="loadingState" class="loading-state">Processing your response...</div>
+        <div id="statusMsg" style="display:none;"></div>
+
+        <div id="resources" class="resources" style="display:none;">
+          <h3>Get started -- bookmark and star these folders:</h3>
+          <a class="resource-link" href="https://discord.gg/W6BTV5Pqy" target="_blank" rel="noopener">
+            <div class="r-icon">D</div>
+            <div>
+              <strong>REACH Discord Server</strong>
+              <span>Team communication and updates</span>
+            </div>
+          </a>
+          <a class="resource-link" href="https://utexas.box.com/s/5kledxwf0o15le1gfnq5c96gfyg6m0pz" target="_blank" rel="noopener">
+            <div class="r-icon">B</div>
+            <div>
+              <strong>UT Box Drive</strong>
+              <span>Star this folder for quick access</span>
+            </div>
+          </a>
+          <a class="resource-link" href="https://drive.google.com/drive/folders/1LE0Mknn_3d9yqtK6n442ig6YU2WHqAU1?usp=sharing" target="_blank" rel="noopener">
+            <div class="r-icon">G</div>
+            <div>
+              <strong>Google Drive</strong>
+              <span>Star this folder for quick access</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Already responded state -->
+      <div id="alreadyCard" class="offer-card" style="display:none;">
+        <h1 id="alreadyGreeting"></h1>
+        <div id="alreadyMsg" class="status-msg status-already"></div>
+        <div id="alreadyResources" class="resources" style="display:none;">
+          <h3>Your team resources:</h3>
+          <a class="resource-link" href="https://discord.gg/W6BTV5Pqy" target="_blank" rel="noopener">
+            <div class="r-icon">D</div>
+            <div>
+              <strong>REACH Discord Server</strong>
+              <span>Team communication and updates</span>
+            </div>
+          </a>
+          <a class="resource-link" href="https://utexas.box.com/s/5kledxwf0o15le1gfnq5c96gfyg6m0pz" target="_blank" rel="noopener">
+            <div class="r-icon">B</div>
+            <div>
+              <strong>UT Box Drive</strong>
+              <span>Star this folder for quick access</span>
+            </div>
+          </a>
+          <a class="resource-link" href="https://drive.google.com/drive/folders/1LE0Mknn_3d9yqtK6n442ig6YU2WHqAU1?usp=sharing" target="_blank" rel="noopener">
+            <div class="r-icon">G</div>
+            <div>
+              <strong>Google Drive</strong>
+              <span>Star this folder for quick access</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Phase 2: Envelope animation overlay ───────────── -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="envelope-scene" id="envelopeScene">
+      <!-- Letter (sits behind body, slides up) -->
+      <div class="envelope-letter" id="envelopeLetter">
+        <div class="letter-seal"><span>R</span></div>
+        <div class="letter-lines">
+          <div class="letter-line"></div>
+          <div class="letter-line"></div>
+          <div class="letter-line"></div>
+        </div>
+      </div>
+      <!-- Flap -->
+      <div class="envelope-flap" id="envelopeFlap"></div>
+      <!-- Body (covers letter) -->
+      <div class="envelope-body">
+        <img src="/public/icon-banner-transparent.png" alt="" class="envelope-logo" />
       </div>
     </div>
   </div>
 
+  <!-- ── Site footer (same as landing) ─────────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>&copy; <span id="year"></span> REACH Equity Lab</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noreferrer">X / Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
   <script>
-    /* ── Confetti ──────────────────────────────────────────── */
+    /* ── Confetti engine ───────────────────────────────────── */
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -298,17 +582,17 @@
 
     function launchConfetti() {
       particles = [];
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 250; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height - canvas.height,
           w: Math.random() * 10 + 5,
           h: Math.random() * 6 + 3,
           color: COLORS[Math.floor(Math.random() * COLORS.length)],
-          vx: (Math.random() - 0.5) * 4,
+          vx: (Math.random() - 0.5) * 5,
           vy: Math.random() * 3 + 2,
           rot: Math.random() * 360,
-          rotV: (Math.random() - 0.5) * 8,
+          rotV: (Math.random() - 0.5) * 10,
           opacity: 1,
         });
       }
@@ -328,9 +612,7 @@
         p.y += p.vy;
         p.vy += 0.04;
         p.rot += p.rotV;
-        if (p.y > canvas.height + 20) {
-          p.opacity -= 0.02;
-        }
+        if (p.y > canvas.height + 20) p.opacity -= 0.02;
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate((p.rot * Math.PI) / 180);
@@ -347,67 +629,140 @@
       }
     }
 
-    /* ── Page logic ────────────────────────────────────────── */
+    /* ── State ──────────────────────────────────────────────── */
     const params = new URLSearchParams(window.location.search);
     const token = params.get('t');
+    let personData = null;
 
-    async function init() {
-      document.body.classList.add('page-loaded');
+    /* ── Envelope animation sequence ───────────────────────── */
+    const overlay = document.getElementById('envelopeOverlay');
+    const scene = document.getElementById('envelopeScene');
+    const flap = document.getElementById('envelopeFlap');
+    const letter = document.getElementById('envelopeLetter');
 
-      if (!token) {
+    document.getElementById('openEnvelope').addEventListener('click', async function (e) {
+      e.preventDefault();
+
+      /* Fetch data first so we know if the token is valid */
+      try {
+        const res = await fetch('/api/respond?token=' + encodeURIComponent(token));
+        if (!res.ok) {
+          showOfferView();
+          document.getElementById('invalidState').style.display = '';
+          return;
+        }
+        personData = await res.json();
+      } catch {
+        showOfferView();
         document.getElementById('invalidState').style.display = '';
         return;
       }
 
-      try {
-        const res = await fetch('/api/respond?token=' + encodeURIComponent(token));
-        if (!res.ok) {
-          document.getElementById('invalidState').style.display = '';
-          return;
-        }
-        const data = await res.json();
+      /* If already responded, skip envelope and go straight to result */
+      if (personData.responded) {
+        showAlreadyResponded(personData);
+        return;
+      }
 
-        if (data.responded) {
-          /* Already responded */
-          const card = document.getElementById('alreadyCard');
-          card.style.display = '';
-          document.getElementById('alreadyGreeting').textContent = 'Hi ' + data.name + ',';
-          const msg = document.getElementById('alreadyMsg');
-          if (data.response === 'accept') {
-            msg.textContent = 'You have already accepted this offer. Welcome to REACH Equity Lab!';
-            msg.className = 'status-msg status-success';
-            document.getElementById('alreadyResources').style.display = '';
-          } else {
-            msg.textContent = 'You have already responded to this offer.';
-            msg.className = 'status-msg status-already';
-          }
-        } else {
-          /* Show offer */
-          document.getElementById('offerCard').style.display = '';
-          document.getElementById('greeting').textContent = 'Congratulations, ' + data.name + '!';
-          launchConfetti();
-        }
-      } catch {
-        document.getElementById('invalidState').style.display = '';
+      /* Start the envelope animation */
+      runEnvelopeAnimation();
+    });
+
+    function runEnvelopeAnimation() {
+      /* Step 1: Darken backdrop + envelope rises from bottom */
+      overlay.classList.add('active');
+      requestAnimationFrame(function () {
+        scene.classList.add('rise');
+      });
+
+      /* Step 2: Flap opens (after envelope reaches center) */
+      setTimeout(function () {
+        flap.classList.add('open');
+      }, 1000);
+
+      /* Step 3: Letter emerges */
+      setTimeout(function () {
+        letter.classList.add('emerge');
+      }, 1600);
+
+      /* Step 4: Confetti burst */
+      setTimeout(function () {
+        launchConfetti();
+      }, 2200);
+
+      /* Step 5: Fade out envelope, reveal offer card */
+      setTimeout(function () {
+        scene.classList.add('fade-out');
+      }, 2800);
+
+      setTimeout(function () {
+        overlay.classList.remove('active');
+        overlay.style.display = 'none';
+        document.getElementById('landingView').style.display = 'none';
+        showOfferView();
+        document.getElementById('offerCard').style.display = '';
+        document.getElementById('greeting').textContent = 'Congratulations, ' + personData.name + '!';
+
+        /* Second confetti burst as the card appears */
+        setTimeout(function () { launchConfetti(); }, 300);
+      }, 3400);
+    }
+
+    function showOfferView() {
+      var view = document.getElementById('offerView');
+      view.style.display = '';
+      requestAnimationFrame(function () {
+        view.classList.add('visible');
+      });
+    }
+
+    function showAlreadyResponded(data) {
+      document.getElementById('landingView').style.display = 'none';
+      showOfferView();
+      var card = document.getElementById('alreadyCard');
+      card.style.display = '';
+      document.getElementById('alreadyGreeting').textContent = 'Hi ' + data.name + ',';
+      var msg = document.getElementById('alreadyMsg');
+      if (data.response === 'accept') {
+        msg.textContent = 'You have already accepted this offer. Welcome to REACH Equity Lab!';
+        msg.className = 'status-msg status-success';
+        document.getElementById('alreadyResources').style.display = '';
+      } else {
+        msg.textContent = 'You have already responded to this offer.';
+        msg.className = 'status-msg status-already';
       }
     }
 
+    /* ── Init: validate token exists before showing landing ── */
+    (async function init() {
+      if (!token) {
+        document.getElementById('landingView').style.display = 'none';
+        showOfferView();
+        document.getElementById('invalidState').style.display = '';
+        return;
+      }
+      /* Landing is visible by default -- just let it show */
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+
+    /* ── Accept / Decline handler ──────────────────────────── */
     async function respond(decision) {
-      const actions = document.getElementById('offerActions');
-      const loading = document.getElementById('loadingState');
-      const statusEl = document.getElementById('statusMsg');
+      var actions = document.getElementById('offerActions');
+      var loading = document.getElementById('loadingState');
+      var statusEl = document.getElementById('statusMsg');
 
       actions.style.display = 'none';
       loading.style.display = 'block';
 
       try {
-        const res = await fetch('/api/respond', {
+        var res = await fetch('/api/respond', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token, decision }),
+          body: JSON.stringify({ token: token, decision: decision }),
         });
 
-        const data = await res.json();
+        var data = await res.json();
         loading.style.display = 'none';
 
         if (res.status === 409) {
@@ -444,8 +799,6 @@
         actions.style.display = 'flex';
       }
     }
-
-    init();
   </script>
 </body>
 </html>
