@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REACH Equity Lab | Application Update</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/jpeg" href="/public/reach-icon.jpg" />
+  <style>
+    .offer-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: var(--blue-200);
+    }
+    .offer-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(31, 58, 95, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-card h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      color: var(--blue-900);
+    }
+    .offer-card .subtitle {
+      color: var(--teal-500);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+    .offer-card p {
+      color: var(--text-700);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .offer-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .btn-accept {
+      background: var(--teal-500);
+      border-color: var(--teal-500);
+      color: var(--white);
+      font-size: 1.05rem;
+      padding: 14px 36px;
+    }
+    .btn-accept:hover {
+      background: #2e8a7f;
+      border-color: #2e8a7f;
+      transform: translateY(-2px);
+    }
+    .btn-decline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-700);
+      font-size: 1.05rem;
+      padding: 14px 36px;
+    }
+    .btn-decline:hover {
+      background: #fef2f2;
+      border-color: #f87171;
+      color: #b91c1c;
+      transform: translateY(-2px);
+    }
+    .offer-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--teal-500) 100%);
+      color: var(--white);
+      padding: 6px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .resources {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+    .resources h3 {
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+      color: var(--blue-900);
+    }
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: border-color 200ms ease, transform 180ms ease;
+    }
+    .resource-link:hover {
+      border-color: var(--teal-500);
+      transform: translateY(-2px);
+    }
+    .resource-link .r-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--blue-200);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .resource-link strong {
+      color: var(--blue-900);
+      display: block;
+      font-size: 0.95rem;
+    }
+    .resource-link span {
+      color: var(--text-500);
+      font-size: 0.82rem;
+    }
+    .status-msg {
+      margin-top: 24px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .status-success {
+      background: #e6f7f5;
+      border: 1px solid var(--teal-500);
+      color: #1a6b64;
+    }
+    .status-declined {
+      background: #fef2f2;
+      border: 1px solid #f87171;
+      color: #b91c1c;
+    }
+    .status-error {
+      background: #fef2f2;
+      border: 1px solid #f87171;
+      color: #b91c1c;
+    }
+    .status-already {
+      background: var(--blue-200);
+      border: 1px solid var(--blue-500);
+      color: var(--blue-900);
+    }
+    .loading-state {
+      display: none;
+      color: var(--text-500);
+      font-size: 1rem;
+      margin-top: 24px;
+    }
+    .invalid-state {
+      text-align: center;
+    }
+
+    /* Confetti canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="offer-wrap">
+    <!-- Invalid / loading state -->
+    <div id="invalidState" class="offer-card invalid-state" style="display:none;">
+      <h1>Link Not Found</h1>
+      <p>This link is invalid or has expired.</p>
+      <a class="btn" href="index.html">Go to Home</a>
+    </div>
+
+    <!-- Main offer card -->
+    <div id="offerCard" class="offer-card" style="display:none;">
+      <div class="offer-badge">Application Update</div>
+      <h1 id="greeting"></h1>
+      <p class="subtitle">REACH Equity Lab -- Spring 2026</p>
+      <p>
+        After careful review of your application, we are pleased to inform you that you have been
+        <strong>selected to join the REACH Equity Lab</strong> research team.
+      </p>
+      <p>
+        Your background and interests align well with our mission to advance undergraduate
+        research on health disparities. We are excited about the contributions you will bring
+        to our work.
+      </p>
+      <p>
+        Please confirm your decision below. Once you respond, this link will be deactivated.
+      </p>
+
+      <div id="offerActions" class="offer-actions">
+        <button class="btn btn-accept" id="btnAccept" onclick="respond('accept')">Accept Offer</button>
+        <button class="btn btn-decline" id="btnDecline" onclick="respond('decline')">Decline</button>
+      </div>
+
+      <div id="loadingState" class="loading-state">Processing your response...</div>
+      <div id="statusMsg" style="display:none;"></div>
+
+      <div id="resources" class="resources" style="display:none;">
+        <h3>Get started -- bookmark and star these folders:</h3>
+        <a class="resource-link" href="https://discord.gg/W6BTV5Pqy" target="_blank" rel="noopener">
+          <div class="r-icon">D</div>
+          <div>
+            <strong>REACH Discord Server</strong>
+            <span>Team communication and updates</span>
+          </div>
+        </a>
+        <a class="resource-link" href="https://utexas.box.com/s/5kledxwf0o15le1gfnq5c96gfyg6m0pz" target="_blank" rel="noopener">
+          <div class="r-icon">B</div>
+          <div>
+            <strong>UT Box Drive</strong>
+            <span>Star this folder for quick access</span>
+          </div>
+        </a>
+        <a class="resource-link" href="https://drive.google.com/drive/folders/1LE0Mknn_3d9yqtK6n442ig6YU2WHqAU1?usp=sharing" target="_blank" rel="noopener">
+          <div class="r-icon">G</div>
+          <div>
+            <strong>Google Drive</strong>
+            <span>Star this folder for quick access</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Already responded state -->
+    <div id="alreadyCard" class="offer-card" style="display:none;">
+      <h1 id="alreadyGreeting"></h1>
+      <div id="alreadyMsg" class="status-msg status-already"></div>
+      <div id="alreadyResources" class="resources" style="display:none;">
+        <h3>Your team resources:</h3>
+        <a class="resource-link" href="https://discord.gg/W6BTV5Pqy" target="_blank" rel="noopener">
+          <div class="r-icon">D</div>
+          <div>
+            <strong>REACH Discord Server</strong>
+            <span>Team communication and updates</span>
+          </div>
+        </a>
+        <a class="resource-link" href="https://utexas.box.com/s/5kledxwf0o15le1gfnq5c96gfyg6m0pz" target="_blank" rel="noopener">
+          <div class="r-icon">B</div>
+          <div>
+            <strong>UT Box Drive</strong>
+            <span>Star this folder for quick access</span>
+          </div>
+        </a>
+        <a class="resource-link" href="https://drive.google.com/drive/folders/1LE0Mknn_3d9yqtK6n442ig6YU2WHqAU1?usp=sharing" target="_blank" rel="noopener">
+          <div class="r-icon">G</div>
+          <div>
+            <strong>Google Drive</strong>
+            <span>Star this folder for quick access</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── Confetti ──────────────────────────────────────────── */
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animating = false;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const COLORS = ['#1f3a5f', '#3ba99c', '#5fa8d3', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#10b981'];
+
+    function launchConfetti() {
+      particles = [];
+      for (let i = 0; i < 200; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          w: Math.random() * 10 + 5,
+          h: Math.random() * 6 + 3,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          vx: (Math.random() - 0.5) * 4,
+          vy: Math.random() * 3 + 2,
+          rot: Math.random() * 360,
+          rotV: (Math.random() - 0.5) * 8,
+          opacity: 1,
+        });
+      }
+      if (!animating) {
+        animating = true;
+        animateConfetti();
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = 0;
+      for (const p of particles) {
+        if (p.opacity <= 0) continue;
+        alive++;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.04;
+        p.rot += p.rotV;
+        if (p.y > canvas.height + 20) {
+          p.opacity -= 0.02;
+        }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+      if (alive > 0) {
+        requestAnimationFrame(animateConfetti);
+      } else {
+        animating = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    /* ── Page logic ────────────────────────────────────────── */
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('t');
+
+    async function init() {
+      document.body.classList.add('page-loaded');
+
+      if (!token) {
+        document.getElementById('invalidState').style.display = '';
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/respond?token=' + encodeURIComponent(token));
+        if (!res.ok) {
+          document.getElementById('invalidState').style.display = '';
+          return;
+        }
+        const data = await res.json();
+
+        if (data.responded) {
+          /* Already responded */
+          const card = document.getElementById('alreadyCard');
+          card.style.display = '';
+          document.getElementById('alreadyGreeting').textContent = 'Hi ' + data.name + ',';
+          const msg = document.getElementById('alreadyMsg');
+          if (data.response === 'accept') {
+            msg.textContent = 'You have already accepted this offer. Welcome to REACH Equity Lab!';
+            msg.className = 'status-msg status-success';
+            document.getElementById('alreadyResources').style.display = '';
+          } else {
+            msg.textContent = 'You have already responded to this offer.';
+            msg.className = 'status-msg status-already';
+          }
+        } else {
+          /* Show offer */
+          document.getElementById('offerCard').style.display = '';
+          document.getElementById('greeting').textContent = 'Congratulations, ' + data.name + '!';
+          launchConfetti();
+        }
+      } catch {
+        document.getElementById('invalidState').style.display = '';
+      }
+    }
+
+    async function respond(decision) {
+      const actions = document.getElementById('offerActions');
+      const loading = document.getElementById('loadingState');
+      const statusEl = document.getElementById('statusMsg');
+
+      actions.style.display = 'none';
+      loading.style.display = 'block';
+
+      try {
+        const res = await fetch('/api/respond', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, decision }),
+        });
+
+        const data = await res.json();
+        loading.style.display = 'none';
+
+        if (res.status === 409) {
+          statusEl.style.display = '';
+          statusEl.className = 'status-msg status-already';
+          statusEl.textContent = 'You have already responded to this offer.';
+          return;
+        }
+
+        if (!res.ok) {
+          statusEl.style.display = '';
+          statusEl.className = 'status-msg status-error';
+          statusEl.textContent = data.error || 'Something went wrong. Please try again.';
+          actions.style.display = 'flex';
+          return;
+        }
+
+        statusEl.style.display = '';
+
+        if (decision === 'accept') {
+          statusEl.className = 'status-msg status-success';
+          statusEl.textContent = 'Welcome to REACH Equity Lab! We are excited to have you on the team.';
+          document.getElementById('resources').style.display = '';
+          launchConfetti();
+        } else {
+          statusEl.className = 'status-msg status-declined';
+          statusEl.textContent = 'We understand. Thank you for your interest in REACH Equity Lab.';
+        }
+      } catch {
+        loading.style.display = 'none';
+        statusEl.style.display = '';
+        statusEl.className = 'status-msg status-error';
+        statusEl.textContent = 'Network error. Please check your connection and try again.';
+        actions.style.display = 'flex';
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
