@@ -685,16 +685,12 @@
         letter.classList.add('emerge');
       }, 1600);
 
-      /* Step 4: Confetti burst */
-      setTimeout(function () {
-        launchConfetti();
-      }, 2200);
-
-      /* Step 5: Fade out envelope, reveal offer card */
+      /* Step 4: Fade out envelope */
       setTimeout(function () {
         scene.classList.add('fade-out');
-      }, 2800);
+      }, 2400);
 
+      /* Step 5: Reveal offer card, THEN confetti */
       setTimeout(function () {
         overlay.classList.remove('active');
         overlay.style.display = 'none';
@@ -703,9 +699,9 @@
         document.getElementById('offerCard').style.display = '';
         document.getElementById('greeting').textContent = 'Congratulations, ' + personData.name + '!';
 
-        /* Second confetti burst as the card appears */
-        setTimeout(function () { launchConfetti(); }, 300);
-      }, 3400);
+        /* Confetti only after the card is visible */
+        setTimeout(function () { launchConfetti(); }, 400);
+      }, 3000);
     }
 
     function showOfferView() {
