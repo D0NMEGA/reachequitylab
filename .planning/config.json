@@ -13,7 +13,7 @@
     "quick_branch_template": null
   },
   "workflow": {
-    "research": false,
+    "research": true,
     "plan_check": false,
     "verifier": false,
     "nyquist_validation": false,
@@ -25,7 +25,8 @@
     "text_mode": false,
     "research_before_questions": false,
     "discuss_mode": "discuss",
-    "skip_discuss": false
+    "skip_discuss": false,
+    "_auto_chain_active": false
   },
   "hooks": {
     "context_warnings": true
