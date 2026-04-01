@@ -115,61 +115,61 @@
 
 ## Traceability
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| CONT-01 | — | Pending |
-| CONT-02 | — | Pending |
-| CONT-03 | — | Pending |
-| CONT-04 | — | Pending |
-| TEAM-01 | — | Pending |
-| TEAM-02 | — | Pending |
-| TEAM-03 | — | Pending |
-| TEAM-04 | — | Pending |
-| TEAM-05 | — | Pending |
-| TEAM-06 | — | Pending |
-| TEAM-07 | — | Pending |
-| NAV-01 | — | Pending |
-| NAV-02 | — | Pending |
-| SOCL-01 | — | Pending |
-| SOCL-02 | — | Pending |
-| EVNT-01 | — | Pending |
-| EVNT-02 | — | Pending |
-| MIGR-01 | — | Pending |
-| MIGR-02 | — | Pending |
-| MIGR-03 | — | Pending |
-| MIGR-04 | — | Pending |
-| MIGR-05 | — | Pending |
-| CARD-01 | — | Pending |
-| CARD-02 | — | Pending |
-| CARD-03 | — | Pending |
-| PUBS-01 | — | Pending |
-| PUBS-02 | — | Pending |
-| ABUT-01 | — | Pending |
-| ABUT-02 | — | Pending |
-| ABUT-03 | — | Pending |
-| ABUT-04 | — | Pending |
-| SEO-01 | — | Pending |
-| SEO-02 | — | Pending |
-| SEO-03 | — | Pending |
-| FOOT-01 | — | Pending |
-| FOOT-02 | — | Pending |
-| FOOT-03 | — | Pending |
-| A11Y-01 | — | Pending |
-| A11Y-02 | — | Pending |
-| A11Y-03 | — | Pending |
-| A11Y-04 | — | Pending |
-| MOBL-01 | — | Pending |
-| MOBL-02 | — | Pending |
-| MOBL-03 | — | Pending |
-| MOBL-04 | — | Pending |
-| HERO-01 | — | Pending |
-| HERO-02 | — | Pending |
+| Requirement | Phase | Plan | Status |
+|-------------|-------|------|--------|
+| CONT-01 | 1 — Critical Content Fixes | 1.1 | Pending |
+| CONT-02 | 1 — Critical Content Fixes | 1.2 | Pending |
+| CONT-03 | 1 — Critical Content Fixes | 1.2 | Pending |
+| CONT-04 | 1 — Critical Content Fixes | 1.2 | Pending |
+| TEAM-01 | 1 — Critical Content Fixes | 1.3 | Pending |
+| TEAM-02 | 1 — Critical Content Fixes | 1.3 | Pending |
+| TEAM-03 | 1 — Critical Content Fixes | 1.3 | Pending |
+| TEAM-04 | 1 — Critical Content Fixes | 1.3 | Pending |
+| TEAM-05 | 2 — Structural/UX Fixes | 2.3 | Pending |
+| TEAM-06 | 4 — Design Overhaul | 4.1 | Pending |
+| TEAM-07 | 4 — Design Overhaul | 4.1 | Pending |
+| NAV-01 | 2 — Structural/UX Fixes | 2.1 | Pending |
+| NAV-02 | 2 — Structural/UX Fixes | 2.1 | Pending |
+| SOCL-01 | 2 — Structural/UX Fixes | 2.2 | Pending |
+| SOCL-02 | 2 — Structural/UX Fixes | 2.2 | Pending |
+| EVNT-01 | 2 — Structural/UX Fixes | 2.3 | Pending |
+| EVNT-02 | 2 — Structural/UX Fixes | 2.3 | Pending |
+| MIGR-01 | 3 — Stack Migration | 3.1 | Pending |
+| MIGR-02 | 3 — Stack Migration | 3.2 | Pending |
+| MIGR-03 | 3 — Stack Migration | 3.2 | Pending |
+| MIGR-04 | 3 — Stack Migration | 3.3 | Pending |
+| MIGR-05 | 3 — Stack Migration | 3.3 | Pending |
+| CARD-01 | 4 — Design Overhaul | 4.1 | Pending |
+| CARD-02 | 4 — Design Overhaul | 4.1 | Pending |
+| CARD-03 | 4 — Design Overhaul | 4.1 | Pending |
+| PUBS-01 | 4 — Design Overhaul | 4.2 | Pending |
+| PUBS-02 | 4 — Design Overhaul | 4.2 | Pending |
+| ABUT-01 | 4 — Design Overhaul | 4.2 | Pending |
+| ABUT-02 | 4 — Design Overhaul | 4.2 | Pending |
+| ABUT-03 | 4 — Design Overhaul | 4.2 | Pending |
+| ABUT-04 | 4 — Design Overhaul | 4.2 | Pending |
+| SEO-01 | 5 — Polish | 5.1 | Pending |
+| SEO-02 | 5 — Polish | 5.1 | Pending |
+| SEO-03 | 5 — Polish | 5.1 | Pending |
+| FOOT-01 | 4 — Design Overhaul | 4.3 | Pending |
+| FOOT-02 | 4 — Design Overhaul | 4.3 | Pending |
+| FOOT-03 | 4 — Design Overhaul | 4.3 | Pending |
+| A11Y-01 | 5 — Polish | 5.2 | Pending |
+| A11Y-02 | 5 — Polish | 5.2 | Pending |
+| A11Y-03 | 5 — Polish | 5.2 | Pending |
+| A11Y-04 | 5 — Polish | 5.2 | Pending |
+| MOBL-01 | 5 — Polish | 5.3 | Pending |
+| MOBL-02 | 5 — Polish | 5.3 | Pending |
+| MOBL-03 | 5 — Polish | 5.3 | Pending |
+| MOBL-04 | 5 — Polish | 5.3 | Pending |
+| HERO-01 | 4 — Design Overhaul | 4.3 | Pending |
+| HERO-02 | 4 — Design Overhaul | 4.3 | Pending |
 
 **Coverage:**
-- v1 requirements: 43 total
-- Mapped to phases: 0
-- Unmapped: 43 (pending roadmap)
+- v1 requirements: 47 total (43 functional + 4 additional from PROJECT.md: NAV-02, PUBS-02, HERO-01, HERO-02)
+- Mapped to phases: 47
+- Unmapped: 0 — 100% coverage achieved
 
 ---
 *Requirements defined: 2026-04-01*
-*Last updated: 2026-04-01 after milestone v2.0 initialization*
+*Last updated: 2026-04-01 — traceability mapped to v2.0 roadmap (100% coverage)*
