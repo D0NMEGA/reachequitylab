@@ -60,11 +60,10 @@ The site must present REACH Equity Lab as a credible, professional undergraduate
 
 - ✓ Nishant removed from team page — existing (prior commit)
 - ✓ Four new members added with headshots + LinkedIn — existing (prior commit)
+- ✓ Remove fabricated publication from publications.html and index.html — Validated in Phase 1: Critical Content Fixes
+- ✓ Fix leadership titles (Founder & President, Co-Founder) and display order — Validated in Phase 1: Critical Content Fixes
 
 ### Active
-
-- [ ] Remove fabricated publication from publications.html and index.html
-- [ ] Fix leadership titles (Founder & President, Co-Founder) and display order
 - [ ] Consolidate or differentiate Connect vs Contact Us navigation
 - [ ] Replace placeholder social media links with real URLs or remove dead links
 - [ ] Update/archive stale event dates on events.html
@@ -95,8 +94,9 @@ The site must present REACH Equity Lab as a credible, professional undergraduate
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Remove all publication references | No paper published yet — displaying one damages credibility | — Pending |
-| Vibhu = Founder & President | Per audit — leadership hierarchy must be visible | — Pending |
+| Remove all publication references | No paper published yet — displaying one damages credibility | Done — Phase 1 |
+| Show manuscript as "Research in Progress" | User confirmed real title should be visible but not as published | Done — Phase 1 |
+| Vibhu = Founder & President | Per audit — leadership hierarchy must be visible | Done — Phase 1 |
 | Migrate to Next.js + Framer Motion | Current vanilla JS is dated; modern stack matches peer sites | — Pending |
 | Use 21st.dev + shadcn/ui | Production-quality UI primitives aligned with research/startup aesthetic | — Pending |
 | Reference Social Equity Action Lab | Design benchmark for team presentation and editorial quality | — Pending |
@@ -119,4 +119,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 after milestone v2.0 initialization*
+*Last updated: 2026-04-01 after Phase 1 completion*
