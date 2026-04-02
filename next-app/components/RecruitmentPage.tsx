@@ -390,13 +390,13 @@ function RecruitmentPageInner() {
               {responseStatus === "idle" && (
                 <div className={styles.offerActions}>
                   <button
-                    className={`btn ${styles.btnAccept}`}
+                    className={`inline-block border font-bold rounded-[10px] px-4 py-2.5 cursor-pointer transition-[transform,background-color] duration-[180ms] hover:-translate-y-0.5 ${styles.btnAccept}`}
                     onClick={() => respond("accept")}
                   >
                     Accept Offer
                   </button>
                   <button
-                    className={`btn ${styles.btnDecline}`}
+                    className={`inline-block border font-bold rounded-[10px] px-4 py-2.5 cursor-pointer transition-[transform,background-color] duration-[180ms] hover:-translate-y-0.5 ${styles.btnDecline}`}
                     onClick={() => respond("decline")}
                   >
                     Decline
@@ -441,13 +441,13 @@ function RecruitmentPageInner() {
                   </div>
                   <div className={styles.offerActions}>
                     <button
-                      className={`btn ${styles.btnAccept}`}
+                      className={`inline-block border font-bold rounded-[10px] px-4 py-2.5 cursor-pointer transition-[transform,background-color] duration-[180ms] hover:-translate-y-0.5 ${styles.btnAccept}`}
                       onClick={() => respond("accept")}
                     >
                       Accept Offer
                     </button>
                     <button
-                      className={`btn ${styles.btnDecline}`}
+                      className={`inline-block border font-bold rounded-[10px] px-4 py-2.5 cursor-pointer transition-[transform,background-color] duration-[180ms] hover:-translate-y-0.5 ${styles.btnDecline}`}
                       onClick={() => respond("decline")}
                     >
                       Decline
@@ -476,7 +476,10 @@ function RecruitmentPageInner() {
             <div className={`${styles.offerCard} ${styles.invalidState}`}>
               <h1>Link Not Found</h1>
               <p>This link is invalid or has expired.</p>
-              <a className="btn" href="/">
+              <a
+                className="inline-block border border-[#1f3a5f] bg-[#1f3a5f] text-white no-underline font-bold rounded-[10px] px-4 py-2.5 cursor-pointer transition-[transform,background-color] duration-[180ms] hover:-translate-y-0.5 hover:bg-[#163047]"
+                href="/"
+              >
                 Go to Home
               </a>
             </div>

@@ -35,48 +35,53 @@ export function ContactForm() {
     }
   }
 
+  const inputClass =
+    "w-full px-3 py-2.5 rounded-[10px] border border-[#e2e8f0] font-[inherit] focus:outline-none focus:border-[#5fa8d3]";
+
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input id="name" name="name" type="text" required />
+    <form className="grid gap-2.5 mt-3.5" onSubmit={handleSubmit}>
+      <label className="font-semibold" htmlFor="name">
+        Name
+      </label>
+      <input id="name" name="name" type="text" required className={inputClass} />
 
-      <label htmlFor="email">Email</label>
-      <input id="email" name="email" type="email" required />
+      <label className="font-semibold" htmlFor="email">
+        Email
+      </label>
+      <input id="email" name="email" type="email" required className={inputClass} />
 
-      <label htmlFor="subject">Subject</label>
-      <input id="subject" name="subject" type="text" required />
+      <label className="font-semibold" htmlFor="subject">
+        Subject
+      </label>
+      <input id="subject" name="subject" type="text" required className={inputClass} />
 
-      <label htmlFor="message">Message</label>
-      <textarea id="message" name="message" rows={6} required />
+      <label className="font-semibold" htmlFor="message">
+        Message
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows={6}
+        required
+        className={inputClass}
+      />
 
-      <button className="btn" type="submit" disabled={status === "sending"}>
+      <button
+        className="inline-block border border-[#1f3a5f] bg-[#1f3a5f] text-white font-bold rounded-[10px] px-4 py-2.5 cursor-pointer transition-[transform,background-color] duration-[180ms] hover:-translate-y-0.5 hover:bg-[#163047] disabled:opacity-60 disabled:cursor-not-allowed"
+        type="submit"
+        disabled={status === "sending"}
+      >
         {status === "sending" ? "Sending..." : "Send"}
       </button>
 
       {status === "success" && (
-        <p
-          className="form-confirm"
-          style={{
-            display: "block",
-            borderColor: "#3BA99C",
-            color: "#1a6b64",
-            background: "#e6f7f5",
-          }}
-        >
+        <p className="mt-3.5 px-[18px] py-3.5 bg-[#e6f7f5] border border-[#3ba99c] rounded-[10px] text-[#1a6b64] font-semibold text-center">
           Thank you — your message has been sent. We will get back to you soon.
         </p>
       )}
 
       {status === "error" && (
-        <p
-          className="form-confirm"
-          style={{
-            display: "block",
-            borderColor: "#e74c3c",
-            color: "#c0392b",
-            background: "#fdf0ef",
-          }}
-        >
+        <p className="mt-3.5 px-[18px] py-3.5 bg-[#fdf0ef] border border-[#e74c3c] rounded-[10px] text-[#c0392b] font-semibold text-center">
           Something went wrong. Please try again or email us directly.
         </p>
       )}
