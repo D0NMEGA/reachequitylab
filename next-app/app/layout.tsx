@@ -7,10 +7,19 @@ import { PageTransition } from "@/components/PageTransition";
 export const metadata: Metadata = {
   title: "REACH Equity Lab",
   description:
-    "REACH Equity Lab advances undergraduate research on racial, wage, and health disparities.",
+    "REACH Equity Lab advances undergraduate research on racial, wage, and health disparities at UT Austin.",
   icons: {
     icon: "/reach-icon.jpg",
     apple: "/reach-icon.jpg",
+  },
+  openGraph: {
+    siteName: "REACH Equity Lab",
+    type: "website",
+    images: [{ url: "/reach-banner.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/reach-banner.png"],
   },
 };
 

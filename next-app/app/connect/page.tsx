@@ -4,6 +4,23 @@ import { FadeIn } from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "Connect | REACH Equity Lab",
+  description:
+    "Connect with REACH Equity Lab — email, social media, and collaboration opportunities.",
+  openGraph: {
+    title: "Connect | REACH Equity Lab",
+    description:
+      "Connect with REACH Equity Lab — email, social media, and collaboration opportunities.",
+    url: "https://reachequitylab.org/connect",
+    type: "website",
+    images: [{ url: "/reach-banner.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Connect | REACH Equity Lab",
+    description:
+      "Connect with REACH Equity Lab — email, social media, and collaboration opportunities.",
+    images: ["/reach-banner.png"],
+  },
 };
 
 export default function ConnectPage() {

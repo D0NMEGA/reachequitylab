@@ -5,6 +5,23 @@ import { StaggerItem } from "@/components/StaggerItem";
 
 export const metadata: Metadata = {
   title: "Events | REACH Equity Lab",
+  description:
+    "Upcoming events, workshops, and presentations from REACH Equity Lab at UT Austin.",
+  openGraph: {
+    title: "Events | REACH Equity Lab",
+    description:
+      "Upcoming events, workshops, and presentations from REACH Equity Lab at UT Austin.",
+    url: "https://reachequitylab.org/events",
+    type: "website",
+    images: [{ url: "/reach-banner.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Events | REACH Equity Lab",
+    description:
+      "Upcoming events, workshops, and presentations from REACH Equity Lab at UT Austin.",
+    images: ["/reach-banner.png"],
+  },
 };
 
 export default function EventsPage() {

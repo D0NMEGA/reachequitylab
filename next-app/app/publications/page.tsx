@@ -4,6 +4,23 @@ import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "Publications | REACH Equity Lab",
+  description:
+    "Research publications and in-progress studies from REACH Equity Lab on health disparities and equity.",
+  openGraph: {
+    title: "Publications | REACH Equity Lab",
+    description:
+      "Research publications and in-progress studies from REACH Equity Lab on health disparities and equity.",
+    url: "https://reachequitylab.org/publications",
+    type: "website",
+    images: [{ url: "/reach-banner.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Publications | REACH Equity Lab",
+    description:
+      "Research publications and in-progress studies from REACH Equity Lab on health disparities and equity.",
+    images: ["/reach-banner.png"],
+  },
 };
 
 export default function PublicationsPage() {

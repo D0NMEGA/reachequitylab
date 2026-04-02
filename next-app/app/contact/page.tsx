@@ -4,6 +4,23 @@ import { FadeIn } from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "Contact Us | REACH Equity Lab",
+  description:
+    "Send a message to REACH Equity Lab. We respond within 2-3 business days.",
+  openGraph: {
+    title: "Contact Us | REACH Equity Lab",
+    description:
+      "Send a message to REACH Equity Lab. We respond within 2-3 business days.",
+    url: "https://reachequitylab.org/contact",
+    type: "website",
+    images: [{ url: "/reach-banner.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us | REACH Equity Lab",
+    description:
+      "Send a message to REACH Equity Lab. We respond within 2-3 business days.",
+    images: ["/reach-banner.png"],
+  },
 };
 
 export default function ContactPage() {

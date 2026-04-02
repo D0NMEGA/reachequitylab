@@ -6,6 +6,23 @@ import { ReachAccordion } from "@/components/ReachAccordion";
 
 export const metadata: Metadata = {
   title: "About Us | REACH Equity Lab",
+  description:
+    "Learn about REACH Equity Lab's mission, founding story, and approach to equity-centered health research at UT Austin.",
+  openGraph: {
+    title: "About Us | REACH Equity Lab",
+    description:
+      "Learn about REACH Equity Lab's mission, founding story, and approach to equity-centered health research at UT Austin.",
+    url: "https://reachequitylab.org/about",
+    type: "website",
+    images: [{ url: "/reach-banner.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | REACH Equity Lab",
+    description:
+      "Learn about REACH Equity Lab's mission, founding story, and approach to equity-centered health research at UT Austin.",
+    images: ["/reach-banner.png"],
+  },
 };
 
 export default function AboutPage() {
