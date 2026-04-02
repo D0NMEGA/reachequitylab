@@ -33,6 +33,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <meta name="theme-color" content="#113b78" />
+        <link rel="preload" as="image" href="/reach-banner.png" />
       </head>
       <body>
         <Header />
