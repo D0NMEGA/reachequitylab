@@ -1,20 +1,43 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { StaggerContainer } from "@/components/StaggerContainer";
 import { StaggerItem } from "@/components/StaggerItem";
 import { AnimatedText } from "@/components/ui/animated-text";
 
+export const metadata: Metadata = {
+  title: "REACH Equity Lab",
+  description:
+    "REACH Equity Lab advances undergraduate research on racial, wage, and health disparities at UT Austin.",
+  openGraph: {
+    title: "REACH Equity Lab",
+    description:
+      "REACH Equity Lab advances undergraduate research on racial, wage, and health disparities at UT Austin.",
+    url: "https://reachequitylab.org",
+    type: "website",
+    images: [{ url: "/reach-banner.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "REACH Equity Lab",
+    description:
+      "REACH Equity Lab advances undergraduate research on racial, wage, and health disparities at UT Austin.",
+    images: ["/reach-banner.png"],
+  },
+};
+
 export default function HomePage() {
   return (
     <main>
       {/* Hero video section */}
-      <section className="relative min-h-[520px] flex items-center overflow-hidden">
+      <section className="relative min-h-[520px] flex items-center overflow-hidden bg-[#1f3a5f]">
         <video
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 w-full h-full object-cover z-0 hidden md:block"
           autoPlay
           muted
           loop
           playsInline
+          preload="none"
           poster="/reach-banner.png"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
@@ -23,7 +46,7 @@ export default function HomePage() {
           className="absolute inset-0 z-[1]"
           style={{
             background:
-              "linear-gradient(160deg, rgba(28,167,166,0.82) 0%, rgba(31,58,95,0.88) 100%)",
+              "linear-gradient(160deg, rgba(20,120,120,0.88) 0%, rgba(31,58,95,0.88) 100%)",
           }}
         />
         <div className="relative z-[2] max-w-[680px] py-16 w-[min(1120px,92vw)] mx-auto">

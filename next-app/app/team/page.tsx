@@ -103,7 +103,7 @@ export default function TeamPage() {
                     />
                     {/* LinkedIn hover overlay */}
                     <a
-                      className="absolute inset-0 grid place-items-center bg-[rgba(17,59,120,0.72)] opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100 group-focus-within:opacity-100"
+                      className="absolute inset-0 grid place-items-center bg-[rgba(17,59,120,0.72)] opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white focus-visible:ring-inset"
                       href={member.linkedin}
                       target="_blank"
                       rel="noreferrer"
@@ -111,7 +111,8 @@ export default function TeamPage() {
                     >
                       <img
                         src="/icons/linkedin.svg"
-                        alt="LinkedIn"
+                        alt=""
+                        role="presentation"
                         className="w-[54px] h-[54px]"
                       />
                     </a>
