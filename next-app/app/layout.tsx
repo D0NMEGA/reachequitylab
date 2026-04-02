@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { RevealObserver } from "@/components/RevealObserver";
+import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "REACH Equity Lab",
@@ -36,9 +36,8 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
-        <RevealObserver />
       </body>
     </html>
   );
