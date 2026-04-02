@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FadeIn } from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "Connect | REACH Equity Lab",
@@ -9,15 +10,15 @@ export default function ConnectPage() {
   return (
     <main className="section">
       <div className="container narrow">
-        <div className="section-head reveal">
+        <FadeIn className="section-head">
           <h1>Connect With Us</h1>
           <p>
             We welcome collaboration opportunities, questions, and media
             inquiries.
           </p>
-        </div>
+        </FadeIn>
 
-        <section className="connect-block reveal">
+        <FadeIn as="section" className="connect-block" delay={0.1}>
           <h2>General Inquiries</h2>
           <p>
             For questions about our research, partnership opportunities, or
@@ -33,9 +34,9 @@ export default function ConnectPage() {
             <span className="connect-label">Response Time</span>
             <span>We typically respond within 2-3 business days.</span>
           </div>
-        </section>
+        </FadeIn>
 
-        <section className="connect-block reveal">
+        <FadeIn as="section" className="connect-block" delay={0.2}>
           <h2>Follow Our Work</h2>
           <p>
             Stay updated on publications, events, and opportunities through our
@@ -55,9 +56,9 @@ export default function ConnectPage() {
               </div>
             </a>
           </div>
-        </section>
+        </FadeIn>
 
-        <section className="connect-block reveal">
+        <FadeIn as="section" className="connect-block" delay={0.3}>
           <h2>Send a Message</h2>
           <p>
             For detailed inquiries, use our contact form to send us a message
@@ -66,7 +67,7 @@ export default function ConnectPage() {
           <Link className="btn" href="/contact">
             Open Contact Form &rarr;
           </Link>
-        </section>
+        </FadeIn>
       </div>
     </main>
   );

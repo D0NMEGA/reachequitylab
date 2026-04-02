@@ -1,5 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { FadeIn } from "@/components/FadeIn";
+import { StaggerContainer } from "@/components/StaggerContainer";
+import { StaggerItem } from "@/components/StaggerItem";
+
 const teamMembers = [
   {
     name: "Vibhu Kanna",
@@ -49,40 +54,45 @@ export default function TeamPage() {
   return (
     <main className="section">
       <div className="container">
-        <div className="section-head reveal">
+        <FadeIn className="section-head">
           <h1>Our Team</h1>
           <p>
             Connect with our team and explore their professional profiles.
           </p>
-        </div>
+        </FadeIn>
 
-        <section className="team-grid">
+        <StaggerContainer className="team-grid">
           {teamMembers.map((member) => (
-            <article key={member.name} className="team-card reveal">
-              <img
-                src={member.photo}
-                alt={member.name}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    "/headshots/team/placeholder.svg";
-                }}
-              />
-              <div className="team-card-body">
-                <h3>{member.name}</h3>
-                <p>{member.title}</p>
-              </div>
-              <a
-                className="team-overlay"
-                href={member.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`${member.name} LinkedIn`}
+            <StaggerItem key={member.name}>
+              <motion.article
+                className="team-card"
+                whileHover={{ y: -4, transition: { duration: 0.22 } }}
               >
-                <img src="/icons/linkedin.svg" alt="LinkedIn" />
-              </a>
-            </article>
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      "/headshots/team/placeholder.svg";
+                  }}
+                />
+                <div className="team-card-body">
+                  <h3>{member.name}</h3>
+                  <p>{member.title}</p>
+                </div>
+                <a
+                  className="team-overlay"
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${member.name} LinkedIn`}
+                >
+                  <img src="/icons/linkedin.svg" alt="LinkedIn" />
+                </a>
+              </motion.article>
+            </StaggerItem>
           ))}
-        </section>
+        </StaggerContainer>
       </div>
     </main>
   );

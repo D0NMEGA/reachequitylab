@@ -1,4 +1,8 @@
 import Link from "next/link";
+import { FadeIn } from "@/components/FadeIn";
+import { StaggerContainer } from "@/components/StaggerContainer";
+import { StaggerItem } from "@/components/StaggerItem";
+import { AnimatedText } from "@/components/ui/animated-text";
 
 export default function HomePage() {
   return (
@@ -15,56 +19,69 @@ export default function HomePage() {
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
         <div className="hero-video-overlay" />
-        <div className="container hero-video-content reveal">
-          <h1>Where Research Meets Reach</h1>
-          <p>
-            REACH Equity Lab is focused on undergraduate research addressing
-            health disparities tied to racial, wage, and healthcare gaps.
-          </p>
-          <div className="hero-actions">
-            <Link className="btn btn-white" href="/publications">
-              Explore Our Work
-            </Link>
-            <Link className="btn btn-outline-white" href="/about">
-              Learn More
-            </Link>
-          </div>
+        <div className="container hero-video-content">
+          <h1>
+            <AnimatedText
+              text="Where Research Meets Reach"
+              delay={0.2}
+            />
+          </h1>
+          <FadeIn delay={0.5} duration={0.5}>
+            <p>
+              REACH Equity Lab is focused on undergraduate research addressing
+              health disparities tied to racial, wage, and healthcare gaps.
+            </p>
+            <div className="hero-actions">
+              <Link className="btn btn-white" href="/publications">
+                Explore Our Work
+              </Link>
+              <Link className="btn btn-outline-white" href="/about">
+                Learn More
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       <section className="section bg-soft">
         <div className="container">
-          <div className="section-head reveal">
+          <FadeIn className="section-head">
             <h2>Research Focus</h2>
-          </div>
-          <div className="cards three-col">
-            <article className="card reveal">
-              <h3>Racial Gaps</h3>
-              <p>
-                Investigating structural causes and outcomes of racial
-                inequities in access and care quality.
-              </p>
-            </article>
-            <article className="card reveal">
-              <h3>Wage Gaps</h3>
-              <p>
-                Studying how income constraints shape care decisions, treatment
-                adherence, and long-term outcomes.
-              </p>
-            </article>
-            <article className="card reveal">
-              <h3>Health Gaps</h3>
-              <p>
-                Quantifying and communicating disparities in chronic conditions,
-                prevention, and healthcare utilization.
-              </p>
-            </article>
-          </div>
+          </FadeIn>
+          <StaggerContainer className="cards three-col">
+            <StaggerItem>
+              <article className="card">
+                <h3>Racial Gaps</h3>
+                <p>
+                  Investigating structural causes and outcomes of racial
+                  inequities in access and care quality.
+                </p>
+              </article>
+            </StaggerItem>
+            <StaggerItem>
+              <article className="card">
+                <h3>Wage Gaps</h3>
+                <p>
+                  Studying how income constraints shape care decisions, treatment
+                  adherence, and long-term outcomes.
+                </p>
+              </article>
+            </StaggerItem>
+            <StaggerItem>
+              <article className="card">
+                <h3>Health Gaps</h3>
+                <p>
+                  Quantifying and communicating disparities in chronic conditions,
+                  prevention, and healthcare utilization.
+                </p>
+              </article>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       <section className="section">
-        <div className="container split reveal">
+        <FadeIn className="container split">
           <div>
             <h2>Current Research</h2>
             <p className="chip">In Progress</p>
@@ -86,7 +103,7 @@ export default function HomePage() {
               impact.
             </p>
           </aside>
-        </div>
+        </FadeIn>
       </section>
     </main>
   );

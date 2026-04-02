@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FadeIn } from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "Publications | REACH Equity Lab",
@@ -8,11 +9,11 @@ export default function PublicationsPage() {
   return (
     <main className="section">
       <div className="container narrow">
-        <div className="section-head reveal">
+        <FadeIn className="section-head">
           <h1>Publications</h1>
-        </div>
+        </FadeIn>
 
-        <article className="paper-card reveal">
+        <FadeIn as="article" className="paper-card" delay={0.1}>
           <p className="chip">Research in Progress</p>
           <h2>
             Financial Hardship and Cost-Related Nonadherence to
@@ -37,7 +38,7 @@ export default function PublicationsPage() {
               Goal: Evidence for equity-focused policy and intervention design
             </li>
           </ul>
-        </article>
+        </FadeIn>
       </div>
     </main>
   );
