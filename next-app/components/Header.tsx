@@ -61,7 +61,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#e2e8f0] shadow-[0_1px_4px_rgba(31,58,95,0.07)]">
-      <div className="flex items-center justify-between min-h-[72px] gap-[18px] w-[min(1120px,92vw)] mx-auto flex-wrap">
+      <div className="flex items-center justify-between min-h-[72px] gap-[18px] w-full px-4 md:px-6 flex-wrap">
         <Link className="flex items-center gap-2.5 no-underline text-[#1f3a5f] font-extrabold" href="/">
           <img
             src="/icon-banner-transparent.png"

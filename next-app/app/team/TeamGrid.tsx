@@ -6,7 +6,16 @@ import { StaggerContainer } from "@/components/StaggerContainer";
 import { StaggerItem } from "@/components/StaggerItem";
 import { Card, CardContent } from "@/components/ui/card";
 
-const teamMembers = [
+interface TeamMember {
+  name: string;
+  title: string;
+  photo: string;
+  linkedin: string;
+  bio: string;
+  field: string;
+}
+
+const leadership: TeamMember[] = [
   {
     name: "Vibhu Kanna",
     title: "Founder & President",
@@ -26,11 +35,14 @@ const teamMembers = [
   {
     name: "Karthik Peravali",
     title: "Co-Founder",
-    photo: "/headshots/team/Karthik-Peravali.jpg",
+    photo: "/headshots/team/placeholder.svg",
     linkedin: "https://www.linkedin.com/in/karthik-peravali-662917248/",
     bio: "Karthik co-founded REACH Equity Lab and helps drive research direction, team development, and community engagement strategy.",
     field: "Biochemistry, UT Austin",
   },
+];
+
+const researchers: TeamMember[] = [
   {
     name: "Aryan Roghani",
     title: "Researcher",
@@ -65,6 +77,62 @@ const teamMembers = [
   },
 ];
 
+function MemberCard({ member }: { member: TeamMember }) {
+  return (
+    <StaggerItem>
+      <motion.div
+        whileHover={{ y: -4, transition: { duration: 0.22 } }}
+        className="h-full"
+      >
+        <Card className="relative overflow-hidden group flex flex-col h-full">
+          <div className="relative overflow-hidden">
+            <img
+              src={member.photo}
+              alt={`Headshot of ${member.name}`}
+              className="w-full aspect-[4/5] object-cover object-top block bg-[#eef5ff]"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  "/headshots/team/placeholder.svg";
+              }}
+            />
+            <a
+              className="absolute inset-0 grid place-items-center bg-[rgba(17,59,120,0.72)] opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white focus-visible:ring-inset"
+              href={member.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${member.name} on LinkedIn`}
+            >
+              <img
+                src="/icons/linkedin.svg"
+                alt=""
+                role="presentation"
+                className="w-[54px] h-[54px]"
+              />
+            </a>
+          </div>
+          <CardContent className="p-5 flex flex-col gap-2 flex-1">
+            <div>
+              <h3 className="m-0 text-[1.1rem] font-semibold text-[#1f3a5f] leading-tight">
+                {member.name}
+              </h3>
+              <p className="mt-1 mb-0 text-[#3ba99c] text-[0.88rem] font-medium">
+                {member.title}
+              </p>
+            </div>
+            <p className="text-[#6b7280] text-[0.8rem] m-0 flex items-center gap-1">
+              <span aria-hidden="true">📍</span>
+              {member.field}
+            </p>
+            <p className="text-[#4a4a4a] text-[0.9rem] leading-relaxed m-0 flex-1">
+              {member.bio}
+            </p>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </StaggerItem>
+  );
+}
+
 export function TeamGrid() {
   return (
     <main className="py-[84px]">
@@ -79,66 +147,35 @@ export function TeamGrid() {
           </p>
         </FadeIn>
 
+        {/* Leadership */}
+        <FadeIn className="mb-3">
+          <h2 className="text-[#1f3a5f] font-semibold text-[1.4rem] tracking-wide uppercase mb-0">
+            Leadership
+          </h2>
+          <div className="h-[3px] w-12 bg-[#3ba99c] rounded-full mt-2" />
+        </FadeIn>
         <StaggerContainer
           staggerDelay={0.1}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14"
         >
-          {teamMembers.map((member) => (
-            <StaggerItem key={member.name}>
-              <motion.div
-                whileHover={{ y: -4, transition: { duration: 0.22 } }}
-                className="h-full"
-              >
-                <Card className="relative overflow-hidden group flex flex-col h-full">
-                  {/* Photo */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={member.photo}
-                      alt={`Headshot of ${member.name}`}
-                      className="w-full aspect-[4/5] object-cover object-top block bg-[#eef5ff]"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          "/headshots/team/placeholder.svg";
-                      }}
-                    />
-                    {/* LinkedIn hover overlay */}
-                    <a
-                      className="absolute inset-0 grid place-items-center bg-[rgba(17,59,120,0.72)] opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white focus-visible:ring-inset"
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`${member.name} on LinkedIn`}
-                    >
-                      <img
-                        src="/icons/linkedin.svg"
-                        alt=""
-                        role="presentation"
-                        className="w-[54px] h-[54px]"
-                      />
-                    </a>
-                  </div>
+          {leadership.map((member) => (
+            <MemberCard key={member.name} member={member} />
+          ))}
+        </StaggerContainer>
 
-                  {/* Card body */}
-                  <CardContent className="p-5 flex flex-col gap-2 flex-1">
-                    <div>
-                      <h3 className="m-0 text-[1.1rem] font-semibold text-[#1f3a5f] leading-tight">
-                        {member.name}
-                      </h3>
-                      <p className="mt-1 mb-0 text-[#3ba99c] text-[0.88rem] font-medium">
-                        {member.title}
-                      </p>
-                    </div>
-                    <p className="text-[#6b7280] text-[0.8rem] m-0 flex items-center gap-1">
-                      <span aria-hidden="true">📍</span>
-                      {member.field}
-                    </p>
-                    <p className="text-[#4a4a4a] text-[0.9rem] leading-relaxed m-0 flex-1">
-                      {member.bio}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </StaggerItem>
+        {/* Researchers */}
+        <FadeIn className="mb-3">
+          <h2 className="text-[#1f3a5f] font-semibold text-[1.4rem] tracking-wide uppercase mb-0">
+            Researchers
+          </h2>
+          <div className="h-[3px] w-12 bg-[#3ba99c] rounded-full mt-2" />
+        </FadeIn>
+        <StaggerContainer
+          staggerDelay={0.1}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          {researchers.map((member) => (
+            <MemberCard key={member.name} member={member} />
           ))}
         </StaggerContainer>
       </div>

@@ -122,42 +122,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Current Research */}
+      {/* Research CTA */}
       <section className="py-[84px]">
-        <FadeIn className="w-[min(1120px,92vw)] mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 items-start">
-          <div>
-            <h2 className="text-[#1f3a5f] font-semibold text-[clamp(1.7rem,4vw,2.5rem)] leading-tight mt-0">
-              Current Research
-            </h2>
-            <p className="inline-block bg-[#eaf4fb] text-[#1f3a5f] rounded-full px-3 py-1 font-bold text-sm">
-              In Progress
-            </p>
-            <h3 className="font-medium text-[#2c4a73] leading-tight">
-              Financial Hardship and Cost-Related Nonadherence to Cardioprotective
-              Medications in Cancer Survivors
-            </h3>
-            <p>
-              Our team is investigating financial hardship and medication
-              nonadherence among cancer survivors, examining disparities linked
-              to race, income, and healthcare access.
-            </p>
-          </div>
-          <aside
-            className="rounded-2xl text-white p-6"
-            style={{
-              background: "linear-gradient(135deg, #1f3a5f 0%, #3ba99c 100%)",
-            }}
+        <FadeIn className="w-[min(1120px,92vw)] mx-auto text-center">
+          <h2 className="text-[#1f3a5f] font-semibold text-[clamp(1.7rem,4vw,2.5rem)] leading-tight mt-0 mb-3">
+            Our Research
+          </h2>
+          <p className="text-[#4a4a4a] max-w-[52ch] mx-auto leading-relaxed mb-6">
+            We are currently conducting research on health disparities tied to
+            race, income, and healthcare access. Publications coming soon.
+          </p>
+          <Link
+            className="inline-block bg-[#1f3a5f] text-white font-bold no-underline rounded-[10px] px-5 py-2.5 transition-[transform,background-color] duration-[180ms] hover:-translate-y-0.5 hover:bg-[#2c4a73]"
+            href="/publications"
           >
-            <p className="opacity-85 m-0 font-semibold uppercase tracking-[0.06em] text-[0.85rem] text-white">
-              Current Priority
-            </p>
-            <p className="my-2.5 text-[2.2rem] font-extrabold text-white">
-              In Progress
-            </p>
-            <p className="m-0 opacity-[0.92] text-white">
-              Equity-focused evidence for actionable policy and community impact.
-            </p>
-          </aside>
+            View Publications
+          </Link>
         </FadeIn>
       </section>
     </main>

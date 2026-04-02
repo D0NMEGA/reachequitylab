@@ -2,51 +2,24 @@
 
 import Link from "next/link";
 
-const navLinks = [
-  { label: "About", href: "/about" },
-  { label: "Team", href: "/team" },
-  { label: "Publications", href: "/publications" },
-  { label: "Events", href: "/events" },
-  { label: "Connect", href: "/connect" },
-];
-
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[#e2e8f0] bg-[#1f3a5f]">
-      <div className="w-[min(1120px,92vw)] mx-auto py-10 grid gap-6">
-        {/* Tagline */}
-        <div>
-          <p className="text-white font-bold text-[1.1rem] m-0">
-            REACH Equity Lab
-          </p>
-          <p className="text-white/70 text-[0.9rem] mt-1 m-0">
-            Advancing equity through undergraduate research
-          </p>
-        </div>
-
-        {/* Nav links */}
-        <nav aria-label="Footer navigation">
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 list-none m-0 p-0">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-white/80 no-underline text-[0.9rem] hover:text-white transition-colors duration-150"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Bottom row: copyright + social */}
-        <div className="flex flex-wrap justify-between items-center gap-3 border-t border-white/10 pt-5">
-          <p className="text-white/60 text-[0.85rem] m-0">
-            &copy; {year} REACH Equity Lab. All rights reserved.
-          </p>
+    <footer className="bg-[#1f3a5f] text-white/80">
+      <div className="w-[min(1120px,92vw)] mx-auto py-10">
+        {/* Top row: brand + description */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
+          <div className="max-w-[420px]">
+            <p className="text-white font-bold text-[1.15rem] m-0">
+              REACH Equity Lab
+            </p>
+            <p className="text-white/60 text-[0.88rem] mt-2 m-0 leading-relaxed">
+              Research in Epidemiology, Access &amp; Community Health.
+              Advancing equity through undergraduate research at UT Austin.
+            </p>
+          </div>
+          {/* Social */}
           <a
             href="https://www.linkedin.com/company/reach-equity-lab/"
             target="_blank"
@@ -54,7 +27,6 @@ export function Footer() {
             className="flex items-center gap-2 text-white/80 no-underline text-[0.9rem] font-medium hover:text-white transition-colors duration-150"
             aria-label="REACH Equity Lab on LinkedIn"
           >
-            {/* LinkedIn SVG icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -67,6 +39,34 @@ export function Footer() {
             </svg>
             LinkedIn
           </a>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-white/10 pt-6">
+          {/* Links row */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.85rem] mb-4">
+            <Link href="/about" className="text-white/70 no-underline hover:text-white transition-colors">About</Link>
+            <span className="text-white/30">&middot;</span>
+            <Link href="/team" className="text-white/70 no-underline hover:text-white transition-colors">Team</Link>
+            <span className="text-white/30">&middot;</span>
+            <Link href="/publications" className="text-white/70 no-underline hover:text-white transition-colors">Publications</Link>
+            <span className="text-white/30">&middot;</span>
+            <Link href="/events" className="text-white/70 no-underline hover:text-white transition-colors">Events</Link>
+            <span className="text-white/30">&middot;</span>
+            <Link href="/connect" className="text-white/70 no-underline hover:text-white transition-colors">Connect</Link>
+            <span className="text-white/30">&middot;</span>
+            <Link href="/contact" className="text-white/70 no-underline hover:text-white transition-colors">Contact</Link>
+          </div>
+
+          {/* Tagline */}
+          <p className="text-white/40 text-[0.82rem] m-0 mb-3 italic">
+            Research. Equity. Access. Community. Health. Built for impact.
+          </p>
+
+          {/* Copyright */}
+          <p className="text-white/40 text-[0.8rem] m-0">
+            &copy; {year} REACH Equity Lab, The University of Texas at Austin. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

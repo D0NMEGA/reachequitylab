@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { FadeIn } from "@/components/FadeIn";
-import { Badge } from "@/components/ui/badge";
+
 
 export const metadata: Metadata = {
   title: "Publications | REACH Equity Lab",
@@ -23,19 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+/*
+ * Saved publication data (do not display until published):
+ * - Title: Financial Hardship and Cost-Related Nonadherence to Cardioprotective Medications in Cancer Survivors
+ * - Focus: Financial hardship, medication nonadherence, and cancer survivorship
+ * - Approach: Quantitative analysis of cost-related nonadherence patterns
+ * - Goal: Evidence for equity-focused policy and intervention design
+ */
+
 export default function PublicationsPage() {
   return (
     <main className="py-[84px]">
-      <div className="w-[min(780px,100%)] w-[min(1120px,92vw)] mx-auto px-4">
+      <div className="w-[min(780px,92vw)] mx-auto px-4">
         <FadeIn className="text-center mb-10">
           <h1 className="text-[#1f3a5f] font-bold text-[clamp(2rem,5vw,3.4rem)] leading-tight mt-0">
             Publications
           </h1>
         </FadeIn>
 
-        {/* Empty state */}
-        <FadeIn className="flex flex-col items-center text-center py-12 px-6 mb-10 bg-[#f8fbff] border border-[#dce9f7] rounded-2xl" delay={0.08}>
-          {/* Document SVG illustration */}
+        {/* Coming Soon state */}
+        <FadeIn className="flex flex-col items-center text-center py-16 px-6 bg-[#f8fbff] border border-[#dce9f7] rounded-2xl" delay={0.08}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="72"
@@ -56,12 +63,12 @@ export default function PublicationsPage() {
             <polyline points="10 9 9 9 8 9" />
           </svg>
 
-          <h2 className="text-[#1f3a5f] font-semibold text-[1.4rem] leading-tight mt-0 mb-2">
-            No publications yet
+          <h2 className="text-[#1f3a5f] font-semibold text-[1.6rem] leading-tight mt-0 mb-2">
+            Coming Soon
           </h2>
           <p className="text-[#4a4a4a] max-w-[42ch] leading-relaxed mb-6">
-            Our first paper is currently under development. Follow us on LinkedIn
-            to be notified when research is published.
+            Our research is currently in progress. Follow us on LinkedIn
+            to be the first to know when publications are released.
           </p>
           <a
             href="https://www.linkedin.com/company/reach-equity-lab/"
@@ -81,34 +88,6 @@ export default function PublicationsPage() {
             </svg>
             Follow on LinkedIn
           </a>
-        </FadeIn>
-
-        {/* Research in Progress teaser card */}
-        <FadeIn as="article" className="bg-white border border-[#e2e8f0] rounded-[18px] p-6" delay={0.18}>
-          <Badge className="bg-[#eaf4fb] text-[#1f3a5f] font-bold border-transparent">
-            Research in Progress
-          </Badge>
-          <h2 className="text-[#1f3a5f] font-semibold text-[clamp(1.4rem,3.5vw,2rem)] leading-tight mt-4 mb-3">
-            Financial Hardship and Cost-Related Nonadherence to Cardioprotective
-            Medications in Cancer Survivors
-          </h2>
-          <p className="text-[#4a4a4a] leading-relaxed mb-4">
-            This research is currently in progress. Our team is investigating
-            financial hardship and its relationship to medication nonadherence
-            among cancer survivors, with a focus on disparities linked to race,
-            income, and healthcare access.
-          </p>
-          <ul className="text-[#4a4a4a] pl-5 grid gap-2 m-0">
-            <li>
-              <strong className="text-[#2c4a73]">Focus:</strong> Financial hardship, medication nonadherence, and cancer survivorship
-            </li>
-            <li>
-              <strong className="text-[#2c4a73]">Approach:</strong> Quantitative analysis of cost-related nonadherence patterns
-            </li>
-            <li>
-              <strong className="text-[#2c4a73]">Goal:</strong> Evidence for equity-focused policy and intervention design
-            </li>
-          </ul>
         </FadeIn>
       </div>
     </main>
