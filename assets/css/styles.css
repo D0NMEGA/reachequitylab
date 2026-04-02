@@ -17,6 +17,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -28,6 +29,13 @@ body {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 320ms ease, transform 320ms ease;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body > main {
+  flex: 1;
 }
 
 body.page-loaded {
@@ -679,10 +687,14 @@ h3 {
   color: var(--blue-900);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin: 0 0 6px;
+  margin: 48px 0 6px;
   padding-bottom: 8px;
   border-bottom: 3px solid var(--teal-500);
   display: inline-block;
+}
+
+.section-label:first-of-type {
+  margin-top: 0;
 }
 
 .empty-state {
