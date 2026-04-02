@@ -624,99 +624,53 @@ h3 {
 .site-footer {
   border-top: 1px solid var(--border);
   background: var(--blue-900);
-  padding: 40px 0 24px;
+  padding: 14px 0;
 }
 
 .site-footer p,
 .site-footer span,
 .site-footer a {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.footer-inner {
-  width: min(1120px, 92vw);
-  margin-inline: auto;
-}
-
-.footer-brand {
-  margin-bottom: 24px;
-}
-
-.footer-brand strong {
-  color: var(--white);
-  font-size: 1.15rem;
-  display: block;
-  margin-bottom: 6px;
-}
-
-.footer-brand p {
-  font-size: 0.88rem;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
   margin: 0;
-  max-width: 420px;
 }
 
-.footer-divider {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin: 0 0 20px;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
-  font-size: 0.85rem;
-}
-
-.footer-links a {
+.site-footer a {
   text-decoration: none;
   transition: color 150ms;
 }
 
-.footer-links a:hover {
+.site-footer a:hover {
   color: var(--white);
 }
 
-.footer-links .dot {
-  color: rgba(255, 255, 255, 0.3);
+.footer-inner {
+  width: 100%;
+  padding-inline: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.footer-row .dot {
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .footer-tagline {
   font-style: italic;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin: 0 0 10px;
-}
-
-.footer-bottom {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.footer-bottom p {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.76rem;
   margin: 0;
-}
-
-.footer-bottom a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 150ms;
-}
-
-.footer-bottom a:hover {
-  color: var(--white);
 }
 
 .section-label {
