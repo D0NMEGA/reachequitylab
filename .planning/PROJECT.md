@@ -8,26 +8,17 @@ The REACH Equity Lab website is a static HTML/CSS/JS site hosted via Cloudflare 
 
 The site must present REACH Equity Lab as a credible, professional undergraduate research initiative — no fabricated content, accurate titles, and a modern design that matches peer institutions.
 
-## Current Milestone: v2.0 Website Audit & Redesign
+## Current Milestone: v2.1 UI Polish & Live Site Fixes
 
-**Goal:** Address all credibility issues, fix structural/UX problems, and modernize the site with Next.js + Framer Motion + 21st.dev + shadcn/ui + Tailwind.
+**Goal:** Fix all remaining visual/layout issues on the deployed static site.
 
 **Target features:**
-- Remove premature/fabricated publication from all pages
-- Fix leadership titles and ordering (Founder & President, Co-Founder)
-- Consolidate Connect vs Contact Us navigation
-- Replace placeholder social media links with real URLs or remove
-- Update/archive stale events
-- Add Karthik's headshot
-- Migrate to Next.js (App Router) + Tailwind + shadcn/ui + Framer Motion + 21st.dev
-- Rebuild team cards with bios, majors, staggered animations
-- Design proper Publications empty state
-- Strengthen About page narrative
-- Add meta descriptions + OG tags to all pages
-- Add SVG icons to footer social links
-- Accessibility audit (contrast, focus states, ARIA)
-- Mobile nav behavior fixes
-- Hero video mobile performance optimization
+- Compact 2-line footer, properly centered on all pages
+- Team page split into Leadership / Researchers sections with visual spacing
+- Publications page shows "Coming Soon" only (no research details)
+- Logo pushed flush-left in header
+- Karthik's headshot using his actual .png photo
+- Sticky footer (footer always at page bottom, even on short-content pages like Events)
 
 ## Context
 
@@ -119,4 +110,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 after Phase 1 completion*
+*Last updated: 2026-04-02 after milestone v2.1 initialization*
