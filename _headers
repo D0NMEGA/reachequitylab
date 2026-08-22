@@ -1,0 +1,17 @@
+# Cloudflare Pages defaults static assets to Cache-Control: max-age=14400.
+# None of these filenames are content-hashed, so for four hours after a deploy
+# a browser can keep serving the previous CSS or JS. That is how the fixed
+# mobile menu shipped and still looked broken in Chrome while working in Safari
+# on the same iPhone: identical engine (Chrome on iOS is WebKit), separate
+# HTTP caches, and only one of them had refetched the stylesheet.
+#
+# Pages answers every request with an ETag and a 304 when nothing changed, so
+# revalidating each time costs one round trip and no bytes.
+
+/assets/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Images are cosmetic when stale, so they get an hour rather than a round trip
+# on every page view. Still well short of the four-hour default.
+/public/*
+  Cache-Control: public, max-age=3600, must-revalidate
