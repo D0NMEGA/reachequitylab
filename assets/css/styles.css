@@ -1711,11 +1711,13 @@ h1 {
 }
 
 /* ---- institution network -------------------------------------------------
-   Typographic tiles rather than logo images. Every mark on this list belongs
-   to someone else, and several of them (Harvard, Duke, Mass General, Ascension)
-   are actively enforced, so a logo goes up only once we hold written permission
-   and the org's own asset file. Each tile is already a flex row: dropping an
-   <img class="org-mark"> before the name is the whole change when that lands. */
+   Chapters are a small fixed grid; affiliations scroll, because seven marks of
+   wildly different aspect ratios sit better in a moving strip than in a grid
+   that has to leave one row half empty.
+
+   Marks are rendered flat white. None of these SVGs carries an opaque
+   background rect, so brightness(0) invert(1) hits the artwork rather than a
+   white tile behind it (which is exactly what it did to the LinkedIn icon). */
 .org-label {
   font-family: var(--font-mono);
   font-size: 0.82rem;
@@ -1723,7 +1725,7 @@ h1 {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.62);
-  margin: 40px 0 14px;
+  margin: 44px 0 16px;
 }
 
 .org-label:first-of-type {
@@ -1735,16 +1737,18 @@ h1 {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
 }
 
 .org-tile {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
-  min-height: 86px;
-  padding: 18px 20px;
+  justify-content: center;
+  gap: 10px;
+  min-height: 118px;
+  padding: 22px 24px;
   border-radius: 16px;
   background: var(--glass);
   border: 1px solid var(--glass-edge);
@@ -1753,32 +1757,102 @@ h1 {
   box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-spec);
 }
 
-/* Reserved for the logo files. Height, not width, so marks of different
-   aspect ratios optically match instead of matching on paper. */
-.org-mark {
-  flex: none;
-  height: 34px;
-  width: auto;
-  max-width: 96px;
-  object-fit: contain;
-}
-
-.org-name {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.02rem;
-  line-height: 1.3;
-  color: #fff;
+.org-tile .org-mark {
+  height: 46px;
+  max-width: 100%;
 }
 
 .org-note {
-  display: block;
-  margin-top: 3px;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+/* Every mark is normalised on height, so the wide single-line lockups end up
+   much longer than the stacked ones. That is correct: matching them on width
+   would shrink the tall marks until they were unreadable. */
+.org-mark {
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* ---- affiliation marquee ---- */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  margin-top: 6px;
+  padding: 10px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+/* Two identical rows inside a max-content track, shifted by exactly half its
+   width. At -50% the second row sits precisely where the first started, so the
+   restart is invisible and no cross-fade is needed. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-row {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  margin: 0;
+  padding: 0 32px 0 0;
+  list-style: none;
+}
+
+.marquee-row li {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.marquee .org-mark {
+  height: 38px;
+  opacity: 0.82;
+  transition: opacity 220ms ease;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee li:hover .org-mark {
+  opacity: 1;
+}
+
+/* Harvard's shield and the Ascension knot are tall and narrow next to the
+   single-line wordmarks, so they get trimmed to match optically rather than
+   on the raw pixel height. */
+.org-mark--tall {
+  height: 34px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee-row:last-child {
+    display: none;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1787,7 +1861,19 @@ h1 {
   }
 
   .org-tile {
-    min-height: 0;
-    padding: 15px 18px;
+    min-height: 96px;
+    padding: 18px 20px;
+  }
+
+  .marquee-row {
+    gap: 44px;
+  }
+
+  .marquee .org-mark {
+    height: 30px;
+  }
+
+  .org-mark--tall {
+    height: 27px;
   }
 }
