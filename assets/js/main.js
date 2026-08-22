@@ -78,42 +78,6 @@
       revealNodes.forEach((node) => node.classList.add("is-visible"));
     }
 
-    // Bio modal
-    const bioModal = document.getElementById("bioModal");
-    const bioModalClose = document.getElementById("bioModalClose");
-    if (bioModal) {
-      document.querySelectorAll(".team-card--clickable").forEach((card) => {
-        card.addEventListener("click", () => {
-          document.getElementById("bioModalPhoto").src = card.dataset.photo;
-          document.getElementById("bioModalPhoto").alt = card.dataset.name;
-          document.getElementById("bioModalName").textContent = card.dataset.name;
-          document.getElementById("bioModalRole").textContent = card.dataset.role;
-          document.getElementById("bioModalBio").textContent = card.dataset.bio;
-          document.getElementById("bioModalLinkedIn").href = card.dataset.linkedin;
-          bioModal.classList.add("active");
-          body.style.overflow = "hidden";
-        });
-      });
-
-      bioModalClose.addEventListener("click", () => {
-        bioModal.classList.remove("active");
-        body.style.overflow = "";
-      });
-
-      bioModal.addEventListener("click", (e) => {
-        if (e.target === bioModal) {
-          bioModal.classList.remove("active");
-          body.style.overflow = "";
-        }
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && bioModal.classList.contains("active")) {
-          bioModal.classList.remove("active");
-          body.style.overflow = "";
-        }
-      });
-    }
 
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
