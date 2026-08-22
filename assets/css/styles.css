@@ -78,10 +78,25 @@ body.page-leave {
 }
 
 /* Always used as "container narrow", on the same element, so this width
-   replaces .container's. The 100% therefore cancelled the 92vw gutter and
-   ran ten pages edge to edge on a phone. Cap the measure, keep the gutter. */
+   replaces .container's. The 100% it once had cancelled the 92vw gutter and
+   ran ten pages edge to edge on a phone; 780px then went too far the other
+   way, parking every page in a column barely half the width of a laptop
+   screen with a third of the display empty on each side.
+
+   The column now sizes for the widest thing on these pages, which is a
+   three-column table, and prose gets its readable measure back from the
+   rule below rather than from the container. */
 .narrow {
-  width: min(780px, 92vw);
+  width: min(1020px, 92vw);
+}
+
+/* Running text stops at about 70 characters, the point past which the eye
+   starts losing the line it is on. Tables, cards, and grids are children
+   too but are excluded: they want the full column. */
+.narrow > p,
+.narrow > .standards-list,
+.narrow > .acronym-list {
+  max-width: 80ch;
 }
 
 .site-header {
@@ -1780,6 +1795,60 @@ h1 {
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
+}
+
+/* An invitation sitting in the same grid as the chapters that already exist,
+   so "there could be one here" is the obvious reading. Outlined rather than
+   filled: it is a call to action, not a fourth chapter. */
+.org-tile--action {
+  padding: 0;
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transition: border-color 220ms ease, background-color 220ms ease;
+}
+
+.org-tile--action:hover {
+  border-color: var(--accent);
+  background: rgba(90, 162, 255, 0.07);
+}
+
+.org-tile--action a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  min-height: 118px;
+  padding: 22px 24px;
+  text-decoration: none;
+  border-radius: 16px;
+}
+
+.org-tile-plus {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.org-tile--action .org-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: #fff;
+}
+
+@media (max-width: 560px) {
+  .org-tile--action a {
+    min-height: 96px;
+    padding: 18px 20px;
+  }
 }
 
 /* ---- affiliation marquee ----
