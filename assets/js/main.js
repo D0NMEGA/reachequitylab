@@ -2,6 +2,22 @@
   const body = document.body;
 
   window.addEventListener("DOMContentLoaded", () => {
+    /* Publish scroll progress as a custom property. Everything chromatic
+       reads --scroll, so one rAF-throttled write drives the backdrop parallax
+       and every specular rim on the page at once. */
+    const root = document.documentElement;
+    let ticking = false;
+    const setScroll = () => {
+      const max = root.scrollHeight - window.innerHeight;
+      root.style.setProperty("--scroll", (max > 0 ? window.scrollY / max : 0).toFixed(4));
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(setScroll); }
+    }, { passive: true });
+    window.addEventListener("resize", setScroll, { passive: true });
+    setScroll();
+
     requestAnimationFrame(() => body.classList.add("page-loaded"));
 
     const yearNode = document.getElementById("year");

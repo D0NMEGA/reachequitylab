@@ -1284,42 +1284,121 @@ textarea:focus-visible {
   background-attachment: local, local, scroll, scroll;
 }
 
+
 /* ===============================================================
-   Liquid glass layer
-   Panels are translucent and blurred, so they need something with
-   structure behind them. The ground below supplies that: a cool
-   base wash, three soft colour blooms, and a fine lattice.
+   LIQUID GLASS OVER CLOTH
+
+   The approach is taken from the Financial report: a photographic
+   backdrop, a separate legibility scrim, and thin glass panels that
+   let the cloth bend through them. Three things make it work.
+
+   1. The scrim is its own layer, not baked into the backdrop. It has
+      to darken the cloth WITHOUT darkening the panels, and both sit
+      behind the content while the panels blur whatever is beneath.
+   2. The glass fill is deliberately thin. The cloth staying legible
+      through the blur is the effect; anything heavier reads as grey
+      card stock sitting on a photograph.
+   3. Parallax rather than a looping animation, so a given panel
+      passes over a fold, then a highlight, then a shadow, and
+      genuinely changes shade on the way down the page.
+
+   ONE THEME, DELIBERATELY. A light palette over this backdrop would
+   be unreadable, so there is no variant to switch to.
    =============================================================== */
 
+:root {
+  --backdrop: url("/public/backdrop-silk.jpg");
+
+  /* No grey text. On a photographic backdrop a lightness step stops
+     reading as hierarchy, so size and weight carry it instead. */
+  --ink: #ffffff;
+  --muted: #ffffff;
+
+  --bg: #08121f;
+  --surface: rgba(18, 32, 54, 0.92);
+  --line: rgba(255, 255, 255, 0.14);
+
+  --scroll: 0;
+  /* Drives the parallax, the glare, and every specular rim at once,
+     from a single rAF-throttled write. */
+  --ang: calc(var(--scroll) * 420deg + 130deg);
+
+  --glass: rgba(14, 28, 50, 0.34);
+  --glass-edge: rgba(255, 255, 255, 0.20);
+  --glass-spec: rgba(255, 255, 255, 0.40);
+  --glass-shadow: 0 16px 48px rgba(0, 0, 0, 0.46), 0 2px 8px rgba(0, 0, 0, 0.30);
+  --blur: blur(26px) saturate(165%) brightness(1.06);
+
+  --accent: #5aa2ff;
+
+  /* Remap the inherited names so existing rules land on the dark set. */
+  --white: #ffffff;
+  --text-900: #ffffff;
+  --text-700: rgba(255, 255, 255, 0.88);
+  --text-500: rgba(255, 255, 255, 0.72);
+  --blue-900: #ffffff;
+  --border: rgba(255, 255, 255, 0.14);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* The cloth. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
-  background:
-    radial-gradient(56vw 46vw at 10% 6%, rgba(24, 82, 211, 0.28), transparent 64%),
-    radial-gradient(50vw 42vw at 94% 22%, rgba(47, 141, 130, 0.24), transparent 62%),
-    radial-gradient(64vw 54vw at 66% 92%, rgba(3, 41, 162, 0.26), transparent 66%),
-    radial-gradient(44vw 40vw at 30% 68%, rgba(101, 147, 196, 0.22), transparent 62%),
-    linear-gradient(168deg, #eef3f9 0%, #dfe8f4 54%, #e7ecf1 100%);
+  pointer-events: none;
+  /* Panned via background-position rather than a transform. A scaled fixed
+     element overhangs the viewport and Chrome counts that overhang as page
+     scroll width, and overflow on an ancestor cannot clip it because a fixed
+     element is not in that clipping chain. Oversizing the image and shifting
+     it gives the same parallax with nothing to overflow. */
+  background-image: var(--backdrop);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center calc(50% + var(--scroll) * -14%);
 }
 
-/* Fine lattice. Kept very low contrast so it reads as texture, not pattern. */
+/* The scrim, kept separate so it darkens cloth but not glass. */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    radial-gradient(rgba(3, 24, 107, 0.13) 1.1px, transparent 1.1px),
-    linear-gradient(rgba(3, 24, 107, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(3, 24, 107, 0.045) 1px, transparent 1px);
-  background-size: 24px 24px, 96px 96px, 96px 96px;
-  background-position: 0 0, 0 0, 0 0;
+  background: linear-gradient(178deg,
+    rgba(4, 10, 20, 0.58) 0%,
+    rgba(4, 10, 20, 0.72) 55%,
+    rgba(3, 8, 16, 0.82) 100%);
 }
 
-/* ---- the glass recipe, shared ---- */
+@media (prefers-reduced-motion: reduce) {
+  body::before { background-position: center 50%; }
+}
+
+/* ---- type ---- */
+h1, h2, h3 { color: var(--ink); }
+p, li { color: var(--muted); }
+
+.section-head p,
+.hero-video-content p,
+.page-meta,
+.spec-table caption {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+a { color: var(--accent); }
+
+.section-label {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* ---- the glass recipe ---- */
 .card,
 .spec-table,
 .empty-state,
@@ -1330,96 +1409,233 @@ body::after {
 .note-inline,
 .stat-card,
 .connect-block,
-.form-centered .card {
+.form-centered .card,
+.bio-modal {
+  position: relative;
+  isolation: isolate;
   background: var(--glass);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-spec);
+  border-radius: 18px;
 }
 
-/* Browsers without backdrop-filter get an opaque panel instead of a
-   washed-out one that cannot be read. */
+/* The glare: one diagonal highlight per pane, at the scroll-driven
+   angle, which is what the eye reads as a curved surface catching a
+   light source. */
+.card::before,
+.empty-state::before,
+.panel::before,
+.note-inline::before,
+.bio-modal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(var(--ang),
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.05) 24%,
+    transparent 50%);
+}
+
+/* Specular rim: a 1px gradient ring drawn with the two-layer mask
+   trick, painting the whole box then punching out all but the padding
+   ring. It rotates with --ang so the bright part travels around the
+   pane as you scroll, the way a real edge catches a moving light. */
+.card::after,
+.empty-state::after,
+.panel::after,
+.standards-list > li::after,
+.note-inline::after,
+.team-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(var(--ang),
+    rgba(255, 255, 255, 0.80),
+    rgba(255, 255, 255, 0.16) 32%,
+    rgba(255, 255, 255, 0.06) 56%,
+    rgba(255, 255, 255, 0.30) 78%,
+    rgba(255, 255, 255, 0.66));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/* Without backdrop-filter, fall back to an opaque surface rather than
+   leaving text on a 34% panel over a photograph. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .card,
-  .spec-table,
-  .empty-state,
-  .panel,
-  .standards-list > li,
-  .ladder > li,
-  .team-card,
-  .note-inline,
-  .stat-card,
-  .connect-block,
-  .form-centered .card {
-    background: rgba(255, 255, 255, 0.94);
+  .card, .spec-table, .empty-state, .panel, .standards-list > li,
+  .ladder > li, .team-card, .note-inline, .stat-card, .connect-block,
+  .form-centered .card, .bio-modal {
+    background: var(--surface);
+    border-color: var(--line);
   }
-}
-
-.card {
-  border-radius: 16px;
-  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 2px 2px rgba(3, 24, 107, 0.05),
-    0 18px 40px -18px rgba(3, 24, 107, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition: transform 220ms ease;
 }
 
+.standards-list > li,
 .note-inline {
-  border-left: 3px solid var(--teal-500);
+  border-left: 1px solid var(--glass-edge);
 }
 
-.standards-list > li {
-  border-left: 3px solid var(--teal-500);
-}
-
-/* Alternating bands become a translucent wash rather than a solid fill. */
+/* On a photograph a hairline rule reads as a seam in the image rather
+   than as structure, and the whitespace already separates sections. */
 .bg-soft {
-  background: rgba(255, 255, 255, 0.26);
-  border-block: 1px solid rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border-block: none;
 }
 
 /* ---- header ---- */
 .site-header {
-  background: rgba(255, 255, 255, 0.62);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 1px 24px -12px rgba(3, 24, 107, 0.35);
+  background: rgba(8, 18, 31, 0.55);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  backdrop-filter: blur(22px) saturate(165%);
+  border-bottom: 1px solid var(--glass-edge);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
-.site-nav a {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-}
+.site-nav a { color: rgba(255, 255, 255, 0.9); }
+.site-nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.10); }
+.site-nav a.active { color: #fff; background: rgba(255, 255, 255, 0.14); }
 
 .site-nav a.nav-cta {
-  background: var(--blue-600);
-  box-shadow: 0 6px 16px -8px rgba(24, 82, 211, 0.9);
+  background: var(--accent);
+  color: #06162c;
+  box-shadow: 0 8px 20px -8px rgba(90, 162, 255, 0.8);
 }
 
 .site-nav a.nav-cta:hover,
 .site-nav a.nav-cta.active {
-  background: var(--blue-800);
+  background: #fff;
+  color: #06162c;
 }
 
-/* ---- hero ---- */
-.hero-video {
-  min-height: 560px;
-  isolation: isolate;
+.brand-logo { filter: brightness(0) invert(1); }
+
+.menu-toggle {
+  color: #fff;
+  border-color: var(--glass-edge);
 }
 
-.hero-video-overlay {
-  background:
-    radial-gradient(60% 70% at 78% 42%, rgba(24, 82, 211, 0.55), transparent 70%),
-    linear-gradient(150deg, #0a2f7a 0%, #03186b 58%, #021047 100%);
+/* ---- hero: the cloth already carries it, so drop the overlay ---- */
+.hero-video { min-height: 620px; }
+.hero-video-overlay { background: none; }
+.hero-eyebrow { color: rgba(255, 255, 255, 0.62); }
+
+/* ---- buttons ---- */
+.btn {
+  background: var(--accent);
+  color: #06162c;
+  box-shadow: 0 10px 26px -12px rgba(90, 162, 255, 0.9);
 }
 
+.btn:hover { background: #fff; color: #06162c; }
+
+a.btn.btn-white { background: #fff; color: #06162c; }
+a.btn.btn-white:hover { background: var(--accent); color: #06162c; }
+
+.btn-outline-white,
+.btn-outline {
+  background: rgba(255, 255, 255, 0.10);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-edge);
+  color: #fff;
+}
+
+.btn-outline-white:hover,
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.20);
+  color: #fff;
+}
+
+/* ---- tables ---- */
+.spec-table { background-image: none; }
+.spec-table thead th { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.spec-table tbody th { color: #fff; }
+.spec-table td { color: rgba(255, 255, 255, 0.86); }
+.spec-table th, .spec-table td { border-bottom-color: rgba(255, 255, 255, 0.10); }
+
+/* ---- team and modal ---- */
+.team-card img { opacity: 0.94; }
+.team-card-body h3 { color: #fff; }
+.team-card-body p { color: rgba(255, 255, 255, 0.75); }
+
+.bio-modal-backdrop {
+  background: rgba(3, 8, 16, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.bio-modal-name { color: #fff; }
+.bio-modal-role { color: var(--accent); }
+.bio-modal-body p { color: rgba(255, 255, 255, 0.88); }
+.bio-modal-close { color: #fff; border-color: var(--glass-edge); }
+
+/* ---- forms ---- */
+.contact-form label { color: #fff; }
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-edge);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: rgba(255, 255, 255, 0.45); }
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.form-privacy { color: rgba(255, 255, 255, 0.6); }
+
+/* ---- footer: transparent, the cloth continues under it ---- */
+.site-footer {
+  background: rgba(3, 8, 16, 0.55);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-edge);
+}
+
+/* ---- focus ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.skip-link { background: var(--accent); color: #06162c; }
+
+/* ---- hero globe ---- */
+.hero-globe::before {
+  background: radial-gradient(closest-side, rgba(90, 162, 255, 0.30), rgba(90, 162, 255, 0) 72%);
+}
+
+@media (max-width: 900px) {
+  .hero-video { min-height: 0; }
+}
+
+/* ---- hero layout (restored: these rules lived in the replaced block) ---- */
 .hero-inner {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -1435,7 +1651,7 @@ body::after {
 }
 
 .hero-video-content h1 {
-  color: var(--white);
+  color: var(--ink);
   font-weight: 700;
   letter-spacing: -0.03em;
 }
@@ -1446,119 +1662,23 @@ body::after {
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
   margin: 0 0 14px;
 }
 
 .hero-globe {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .hero-globe canvas {
+  position: relative;
   width: min(420px, 100%);
   height: auto;
   aspect-ratio: 1;
   display: block;
-  filter: drop-shadow(0 30px 60px rgba(2, 16, 71, 0.6));
-}
-
-/* Buttons in the hero pick up the glass treatment. */
-.btn-outline-white {
-  background: rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-}
-
-.btn-outline-white:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.btn {
-  font-family: var(--font-body);
-  font-weight: 600;
-  background: var(--blue-600);
-  box-shadow: 0 8px 20px -10px rgba(24, 82, 211, 0.95);
-}
-
-.btn:hover {
-  background: var(--blue-800);
-}
-
-.btn-white {
-  color: var(--navy-950);
-}
-
-/* ---- type detail ---- */
-.section-label {
-  font-family: var(--font-display);
-  letter-spacing: 0.02em;
-  text-transform: none;
-  font-size: 1.15rem;
-  border-bottom-width: 2px;
-}
-
-.kicker,
-.spec-table caption {
-  font-family: var(--font-mono);
-}
-
-.spec-table {
-  border-radius: 14px;
-}
-
-.spec-table thead th {
-  background: rgba(24, 82, 211, 0.08);
-}
-
-/* The scroll shadow needs to sit on glass, not on solid white. */
-.spec-table {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(to left, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0)),
-    radial-gradient(farthest-side at 0 50%, rgba(3, 24, 107, 0.16), rgba(3, 24, 107, 0)),
-    radial-gradient(farthest-side at 100% 50%, rgba(3, 24, 107, 0.16), rgba(3, 24, 107, 0));
-}
-
-/* ---- footer ---- */
-.site-footer {
-  background: linear-gradient(160deg, #03186b 0%, #021047 100%);
-}
-
-/* ---- team ---- */
-.team-card {
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.bio-modal {
-  background: rgba(255, 255, 255, 0.86);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid var(--glass-edge);
-}
-
-.bio-modal-backdrop {
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-
-/* ---- forms ---- */
-.contact-form input,
-.contact-form textarea {
-  font-family: var(--font-body);
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid var(--glass-edge);
-  border-radius: 10px;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: 2px solid var(--blue-600);
-  outline-offset: 1px;
-  background: var(--white);
+  filter: drop-shadow(0 30px 60px rgba(2, 12, 34, 0.75));
 }
 
 @media (max-width: 900px) {
@@ -1579,66 +1699,4 @@ body::after {
   .hero-globe canvas {
     width: min(300px, 72vw);
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-  }
-
-  .card:hover {
-    transform: none;
-  }
-}
-
-/* .btn-white sits inside the hero and must win over the generic .btn fill. */
-a.btn.btn-white {
-  background: var(--white);
-  color: var(--navy-950);
-  box-shadow: 0 8px 22px -10px rgba(2, 16, 71, 0.9);
-}
-
-a.btn.btn-white:hover {
-  background: var(--mist);
-  color: var(--navy-950);
-}
-
-/* soft atmosphere behind the globe */
-.hero-globe {
-  position: relative;
-}
-
-.hero-globe::before {
-  content: "";
-  position: absolute;
-  inset: -12%;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(101, 147, 196, 0.35), rgba(101, 147, 196, 0) 72%);
-  pointer-events: none;
-}
-
-.hero-globe canvas {
-  position: relative;
-}
-
-/* The LinkedIn asset is already a rounded white tile with the brand glyph, so
-   the wrapper must not tint it. brightness(0) invert(1) was flattening the
-   whole tile, including its background rect, into a solid white square. */
-.bio-modal-socials a {
-  background: transparent;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-}
-
-.bio-modal-socials a:hover {
-  background: transparent;
-  transform: translateY(-2px);
-}
-
-.bio-modal-socials a img {
-  width: 34px;
-  height: 34px;
-  filter: none;
-  border-radius: 8px;
 }
