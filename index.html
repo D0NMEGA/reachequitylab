@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>REACH Equity Lab | Home</title>
-  <meta name="description" content="REACH Equity Lab advances undergraduate research on racial, wage, and health disparities." />
+  <title>REACH Equity Lab | Research that reaches practice</title>
+  <meta name="description" content="REACH Equity Lab is a student-led research initiative at UT Austin that trains emerging researchers, produces reproducible health-equity evidence, and helps partners put that evidence to use." />
+  <link rel="canonical" href="https://reachequitylab.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="REACH Equity Lab" />
+  <meta property="og:title" content="REACH Equity Lab | Research that reaches practice" />
+  <meta property="og:description" content="REACH Equity Lab is a student-led research initiative at UT Austin that trains emerging researchers, produces reproducible health-equity evidence, and helps partners put that evidence to use." />
+  <meta property="og:url" content="https://reachequitylab.com/" />
+  <meta property="og:image" content="https://reachequitylab.com/public/reach-banner.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="REACH Equity Lab | Research that reaches practice" />
+  <meta name="twitter:description" content="REACH Equity Lab is a student-led research initiative at UT Austin that trains emerging researchers, produces reproducible health-equity evidence, and helps partners put that evidence to use." />
+  <meta name="twitter:image" content="https://reachequitylab.com/public/reach-banner.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -14,6 +25,8 @@
   <meta name="theme-color" content="#113b78" />
 </head>
 <body>
+  <!-- header:start -->
+  <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html" data-transition>
@@ -21,31 +34,31 @@
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="about.html" data-transition>About Us</a>
-        <a href="team.html" data-transition>Team</a>
+        <a href="programs.html" data-transition>Programs</a>
         <a href="publications.html" data-transition>Publications</a>
+        <a href="open-science.html" data-transition>Open Science</a>
+        <a href="team.html" data-transition>Team</a>
         <a href="events.html" data-transition>Events</a>
         <a href="contact.html" data-transition>Connect</a>
         <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
       </nav>
-      <button class="menu-toggle" aria-label="Open menu">☰</button>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     </div>
   </header>
+  <!-- header:end -->
 
-  <main>
+  <main id="main">
     <section class="hero-video">
-      <video class="hero-video-bg" autoplay muted loop playsinline poster="/public/reach-banner.png">
-        <source src="/public/videos/hero.mp4" type="video/mp4" />
-      </video>
       <div class="hero-video-overlay"></div>
       <div class="container hero-video-content reveal">
-        <h1>Where Research Meets Reach</h1>
+        <h1>Research that reaches practice.</h1>
         <p>
-          REACH Equity Lab is focused on undergraduate research addressing health disparities
-          tied to racial, wage, and healthcare gaps.
+          REACH trains emerging researchers, produces reproducible health-equity
+          evidence, and helps partners use evidence.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-white" href="publications.html" data-transition>Explore Our Work</a>
-          <a class="btn btn-outline-white" href="about.html" data-transition>Learn More</a>
+          <a class="btn btn-white" href="programs.html" data-transition>Explore Programs</a>
+          <a class="btn btn-outline-white" href="join.html" data-transition>Join REACH</a>
         </div>
       </div>
     </section>
@@ -53,37 +66,101 @@
     <section class="section bg-soft">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Research Focus</h2>
+          <h2>A three-part model</h2>
+          <p>Each part feeds the next. Research produces evidence, evidence gets documented in the open, and a small share of it gets tested with a partner.</p>
         </div>
         <div class="cards three-col">
           <article class="card reveal">
-            <h3>Racial Gaps</h3>
-            <p>Investigating structural causes and outcomes of racial inequities in access and care quality.</p>
+            <h3>Research Fellowship</h3>
+            <p>A selective sixteen-week program where fellows work in small teams on a defined question, with a faculty or senior adviser on every project.</p>
+            <p><a href="programs.html#fellowship" data-transition>How the fellowship works</a></p>
           </article>
           <article class="card reveal">
-            <h3>Wage Gaps</h3>
-            <p>Studying how income constraints shape care decisions, treatment adherence, and long-term outcomes.</p>
+            <h3>Open Evidence Studio</h3>
+            <p>The production function that turns analysis into reproducible code, documented data, evidence briefs, technical reports, and methods explainers.</p>
+            <p><a href="open-science.html" data-transition>Our open-science standards</a></p>
           </article>
           <article class="card reveal">
-            <h3>Health Gaps</h3>
-            <p>Quantifying and communicating disparities in chronic conditions, prevention, and healthcare utilization.</p>
+            <h3>Impact Lab</h3>
+            <p>Takes the findings a real partner can act on and tests them in one setting, with one decision-maker and one measurable adoption outcome.</p>
+            <p><a href="programs.html#impact-lab" data-transition>How pilots are scoped</a></p>
           </article>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container reveal" style="text-align:center;">
-        <h2>Our Research</h2>
-        <p style="max-width:52ch;margin:0 auto 24px;">
-          We are currently conducting research on health disparities tied to
-          race, income, and healthcare access. Publications coming soon.
-        </p>
-        <a class="btn" href="publications.html" data-transition>View Publications</a>
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>How REACH works</h2>
+        </div>
+        <ol class="process-flow reveal">
+          <li><span class="process-step">Question</span><p>A question that open public data can actually answer, written down as a protocol before any analysis begins.</p></li>
+          <li><span class="process-step">Evidence</span><p>Analysis against a pre-specified plan, reviewed by someone who did not run it.</p></li>
+          <li><span class="process-step">Translation</span><p>Findings rewritten for the people who would use them, with the code and documentation released alongside.</p></li>
+          <li><span class="process-step">Implementation</span><p>Where a partner can use a finding, a scoped pilot measures whether it was adopted in practice.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section bg-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Where we work</h2>
+          <p>Three areas of health disparity research, studied with public and openly licensed data.</p>
+        </div>
+        <div class="cards three-col">
+          <article class="card reveal">
+            <h3>Racial gaps</h3>
+            <p>Structural causes and outcomes of racial inequities in access and care quality.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Wage gaps</h3>
+            <p>How income constraints shape care decisions, treatment adherence, and long-term outcomes.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Health gaps</h3>
+            <p>Disparities in chronic conditions, prevention, and healthcare utilization.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow reveal" style="text-align:center;">
+        <h2>Our published work</h2>
+        <p style="max-width:60ch;margin:0 auto 24px;">REACH is building a rigorous research and open-science program. Completed publications, technical reports, datasets, and reproducible releases will appear here after public release.</p>
+        <a class="btn" href="publications.html" data-transition>Publications and reports</a>
+      </div>
+    </section>
+
+    <section class="section bg-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Get involved</h2>
+        </div>
+        <div class="cards three-col">
+          <article class="card reveal">
+            <h3>Join</h3>
+            <p>General membership is open to eligible UT students. Fellowship places are selective and awarded on an explicit rubric.</p>
+            <p><a href="join.html" data-transition>Ways to take part</a></p>
+          </article>
+          <article class="card reveal">
+            <h3>Partner</h3>
+            <p>For organizations with a decision to make and a question worth answering together.</p>
+            <p><a href="partner.html" data-transition>How we work with partners</a></p>
+          </article>
+          <article class="card reveal">
+            <h3>Support</h3>
+            <p>Expertise, mentorship, data access, and funding all move the work forward.</p>
+            <p><a href="support.html" data-transition>Ways to support</a></p>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- footer:start -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-row">
@@ -91,22 +168,32 @@
         <span class="dot">&middot;</span>
         <a href="about.html">About</a>
         <span class="dot">&middot;</span>
-        <a href="team.html">Team</a>
+        <a href="programs.html">Programs</a>
         <span class="dot">&middot;</span>
         <a href="publications.html">Publications</a>
         <span class="dot">&middot;</span>
+        <a href="open-science.html">Open Science</a>
+        <span class="dot">&middot;</span>
+        <a href="team.html">Team</a>
+        <span class="dot">&middot;</span>
         <a href="events.html">Events</a>
+      </div>
+      <div class="footer-row footer-row--secondary">
+        <a href="join.html">Join</a>
+        <span class="dot">&middot;</span>
+        <a href="partner.html">Partner</a>
+        <span class="dot">&middot;</span>
+        <a href="support.html">Support</a>
         <span class="dot">&middot;</span>
         <a href="contact.html">Connect</a>
         <span class="dot">&middot;</span>
-        <a href="contact-us.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
         <span class="dot">&middot;</span>
         <a href="https://www.linkedin.com/company/reach-equity-lab/" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
-
     </div>
   </footer>
-
+  <!-- footer:end -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>

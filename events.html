@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Events | REACH Equity Lab</title>
+  <meta name="description" content="Workshops, presentations, and public conversations hosted by REACH Equity Lab." />
+  <link rel="canonical" href="https://reachequitylab.com/events.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="REACH Equity Lab" />
+  <meta property="og:title" content="Events | REACH Equity Lab" />
+  <meta property="og:description" content="Workshops, presentations, and public conversations hosted by REACH Equity Lab." />
+  <meta property="og:url" content="https://reachequitylab.com/events.html" />
+  <meta property="og:image" content="https://reachequitylab.com/public/reach-banner.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Events | REACH Equity Lab" />
+  <meta name="twitter:description" content="Workshops, presentations, and public conversations hosted by REACH Equity Lab." />
+  <meta name="twitter:image" content="https://reachequitylab.com/public/reach-banner.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -13,6 +25,8 @@
   <meta name="theme-color" content="#113b78" />
 </head>
 <body>
+  <!-- header:start -->
+  <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html" data-transition>
@@ -20,37 +34,54 @@
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="about.html" data-transition>About Us</a>
-        <a href="team.html" data-transition>Team</a>
+        <a href="programs.html" data-transition>Programs</a>
         <a href="publications.html" data-transition>Publications</a>
-        <a href="events.html" data-transition class="active">Events</a>
+        <a href="open-science.html" data-transition>Open Science</a>
+        <a href="team.html" data-transition>Team</a>
+        <a href="events.html" class="active" data-transition>Events</a>
         <a href="contact.html" data-transition>Connect</a>
         <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
       </nav>
-      <button class="menu-toggle" aria-label="Open menu">☰</button>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     </div>
   </header>
+  <!-- header:end -->
 
-  <main class="section">
-    <div class="container">
-      <div class="section-head reveal">
-        <h1>Events</h1>
-        <p>Upcoming conversations, workshops, and presentations.</p>
+  <main id="main" class="section">
+    <div class="container narrow reveal">
+      <h1>Events</h1>
+      <p>Workshops, presentations, and public conversations. Anyone is welcome at our public events.</p>
+
+      <h2 class="section-label reveal">Upcoming</h2>
+      <div class="empty-state reveal">
+        <h2>No upcoming events scheduled</h2>
+        <p>Our next workshop has not been announced yet. LinkedIn is where dates go up first.</p>
+        <a class="btn" href="https://www.linkedin.com/company/reach-equity-lab/" target="_blank" rel="noreferrer">Follow on LinkedIn</a>
       </div>
 
-      <div class="cards two-col" id="events-grid">
-        <article class="card reveal">
-          <h3>Policy Brief Workshop</h3>
-          <p><strong>Date:</strong> April 11, 2026</p>
-          <p><strong>Location:</strong> Hybrid</p>
-          <p>Translating research into practical recommendations for stakeholders.</p>
+      <h2 class="section-label reveal">What we run</h2>
+      <div class="cards two-col reveal">
+        <article class="card">
+          <h3>Methods workshops</h3>
+          <p>Short, hands-on sessions where you leave with one real analytic skill rather than an overview of many.</p>
         </article>
-      </div>
-      <div class="events-empty-state" id="events-empty" style="display:none;" aria-hidden="true">
-        <p>No upcoming events at this time. Check back soon.</p>
+        <article class="card">
+          <h3>Journal club</h3>
+          <p>A standing session for general members reading and pulling apart health-equity research together.</p>
+        </article>
+        <article class="card">
+          <h3>Public results forums</h3>
+          <p>Once a semester, we present what we actually completed, including what did not work.</p>
+        </article>
+        <article class="card">
+          <h3>Recruitment sessions</h3>
+          <p>An honest explanation of the three participation levels and what each asks of you, ahead of each fellowship cohort.</p>
+        </article>
       </div>
     </div>
   </main>
 
+  <!-- footer:start -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-row">
@@ -58,20 +89,32 @@
         <span class="dot">&middot;</span>
         <a href="about.html">About</a>
         <span class="dot">&middot;</span>
-        <a href="team.html">Team</a>
+        <a href="programs.html">Programs</a>
         <span class="dot">&middot;</span>
         <a href="publications.html">Publications</a>
         <span class="dot">&middot;</span>
+        <a href="open-science.html">Open Science</a>
+        <span class="dot">&middot;</span>
+        <a href="team.html">Team</a>
+        <span class="dot">&middot;</span>
         <a href="events.html">Events</a>
+      </div>
+      <div class="footer-row footer-row--secondary">
+        <a href="join.html">Join</a>
+        <span class="dot">&middot;</span>
+        <a href="partner.html">Partner</a>
+        <span class="dot">&middot;</span>
+        <a href="support.html">Support</a>
         <span class="dot">&middot;</span>
         <a href="contact.html">Connect</a>
         <span class="dot">&middot;</span>
-        <a href="contact-us.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
         <span class="dot">&middot;</span>
         <a href="https://www.linkedin.com/company/reach-equity-lab/" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </div>
   </footer>
+  <!-- footer:end -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>

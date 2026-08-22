@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us | REACH Equity Lab</title>
+  <meta name="description" content="REACH Equity Lab is a student-led research-to-action initiative at UT Austin. Our mission, theory of change, and the standards we hold our work to." />
+  <link rel="canonical" href="https://reachequitylab.com/about.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="REACH Equity Lab" />
+  <meta property="og:title" content="About Us | REACH Equity Lab" />
+  <meta property="og:description" content="REACH Equity Lab is a student-led research-to-action initiative at UT Austin. Our mission, theory of change, and the standards we hold our work to." />
+  <meta property="og:url" content="https://reachequitylab.com/about.html" />
+  <meta property="og:image" content="https://reachequitylab.com/public/reach-banner.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Us | REACH Equity Lab" />
+  <meta name="twitter:description" content="REACH Equity Lab is a student-led research-to-action initiative at UT Austin. Our mission, theory of change, and the standards we hold our work to." />
+  <meta name="twitter:image" content="https://reachequitylab.com/public/reach-banner.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -13,61 +25,101 @@
   <meta name="theme-color" content="#113b78" />
 </head>
 <body>
+  <!-- header:start -->
+  <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html" data-transition>
         <img src="/public/icon-banner-transparent.png" alt="REACH Equity Lab" class="brand-logo" />
       </a>
       <nav class="site-nav" aria-label="Main navigation">
-        <a href="about.html" data-transition class="active">About Us</a>
-        <a href="team.html" data-transition>Team</a>
+        <a href="about.html" class="active" data-transition>About Us</a>
+        <a href="programs.html" data-transition>Programs</a>
         <a href="publications.html" data-transition>Publications</a>
+        <a href="open-science.html" data-transition>Open Science</a>
+        <a href="team.html" data-transition>Team</a>
         <a href="events.html" data-transition>Events</a>
         <a href="contact.html" data-transition>Connect</a>
         <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
       </nav>
-      <button class="menu-toggle" aria-label="Open menu">☰</button>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     </div>
   </header>
+  <!-- header:end -->
 
-  <main class="section">
+  <main id="main" class="section">
     <div class="container narrow reveal">
       <h1>About Us</h1>
       <p>
-        REACH Equity Lab is an undergraduate-driven research initiative focused on health disparities
-        across racial, wage, and healthcare access gaps. Our work combines rigorous analysis with practical,
-        equity-centered policy and community recommendations.
+        REACH Equity Lab is a student-led research initiative at the University of Texas at Austin,
+        focused on health disparities across racial, wage, and healthcare access gaps. We train
+        emerging researchers, produce reproducible evidence from open public data, and help partners
+        translate that evidence into practice.
       </p>
       <p>
-        We train student researchers to investigate complex public health challenges and communicate findings
-        in ways that support action among institutions, policymakers, and community partners.
+        We are an undergraduate organization, not an institutional research center. What we can offer
+        is careful work, done in the open, that other people can check and reuse.
       </p>
 
-      <section class="section-head reveal" style="margin-top: 36px;">
-        <h2>What REACH Means</h2>
-        <p>Research in Epidemiology Access & Community Health</p>
-      </section>
+      <h2 class="section-label reveal">Mission</h2>
+      <p class="lead-statement reveal">
+        Advance equity by producing clear, data-informed research on the disparities that shape health
+        outcomes, and by making that research usable to the people positioned to act on it.
+      </p>
+
+      <h2 class="section-label reveal">Theory of change</h2>
+      <p>
+        REACH converts open public data into rigorous research, understandable public evidence, and
+        small real-world interventions. The three steps are deliberately linked: research that never
+        becomes legible to a practitioner does not change anything, and a pilot that is not grounded in
+        evidence is just activity.
+      </p>
+      <ol class="process-flow reveal">
+        <li><span class="process-step">Open data in</span><p>Public aggregate datasets, government statistical tables, and openly licensed sources that can be analyzed without collecting identifiable information.</p></li>
+        <li><span class="process-step">Rigorous analysis</span><p>A written protocol and analysis plan before the work starts, and independent methods review before anything is claimed.</p></li>
+        <li><span class="process-step">Public evidence</span><p>Code, documentation, figures, and plain-language briefs released together so the finding can be verified and reused.</p></li>
+        <li><span class="process-step">Practical use</span><p>Where a partner can act, a scoped pilot tests whether the evidence is usable in one real setting.</p></li>
+      </ol>
+
+      <h2 class="section-label reveal">What REACH means</h2>
+      <p>Research in Epidemiology, Access, and Community Health.</p>
       <ul class="acronym-list reveal">
-        <li><strong>R: Research</strong> — We ground every initiative in careful inquiry and evidence-driven analysis. Our studies draw from nationally representative datasets to uncover patterns that shape health outcomes.</li>
-        <li><strong>E: Epidemiology</strong> — Our work tracks patterns of disease and outcomes across populations and systems. We apply epidemiologic methods to quantify disparities and identify modifiable risk factors.</li>
-        <li><strong>A: Access</strong> — We examine barriers to care, affordability, and the pathways people use to seek help. Understanding access gaps is essential to designing interventions that reach the most affected communities.</li>
-        <li><strong>C: Community</strong> — We elevate community voices and align findings with lived experience and local context. Our research prioritizes translating evidence into resources that communities can act on directly.</li>
-        <li><strong>H: Health</strong> — Our end goal is better, more equitable health outcomes through actionable insights. Every project is oriented toward practical recommendations for clinicians, policymakers, and advocates.</li>
+        <li><strong>R: Research</strong> &mdash; We ground every initiative in careful inquiry and evidence-driven analysis, working from public and openly licensed datasets.</li>
+        <li><strong>E: Epidemiology</strong> &mdash; We apply epidemiologic methods to quantify disparities across populations and identify modifiable risk factors.</li>
+        <li><strong>A: Access</strong> &mdash; We examine barriers to care, affordability, and the pathways people use to seek help.</li>
+        <li><strong>C: Community</strong> &mdash; We align findings with lived experience and local context, and prioritize outputs communities can act on directly.</li>
+        <li><strong>H: Health</strong> &mdash; Every project is oriented toward practical recommendations for clinicians, policymakers, and advocates.</li>
+      </ul>
+
+      <h2 class="section-label reveal">How we govern the work</h2>
+      <p>
+        These are the standards REACH holds itself to. They exist so that no single person controls
+        research decisions, money, authorship, code, partnerships, and media at the same time.
+      </p>
+      <ul class="standards-list reveal">
+        <li><strong>Separated authority.</strong> Research questions and methods, spending, public claims, and media are each owned by a different director, with a faculty adviser consulted on strategy.</li>
+        <li><strong>Evidence-based authorship.</strong> Authorship follows ICMJE criteria and documented contribution, not seniority or title.</li>
+        <li><strong>Independent review.</strong> Analytical code is reviewed by someone who did not write it, and a reproducibility check runs before any public release.</li>
+        <li><strong>No human subjects in year one.</strong> Our current portfolio avoids participant recruitment and identifiable data entirely.</li>
+        <li><strong>Nothing published early.</strong> Work in progress, submitted manuscripts, and prospective collaborations do not appear on this site. See our <a href="publications.html" data-transition>publication rule</a>.</li>
       </ul>
 
       <section class="mini-grid">
         <article class="card reveal">
-          <h3>Mission</h3>
-          <p>Advance equity by producing clear, data-informed research on disparities that shape health outcomes.</p>
+          <h3>Programs</h3>
+          <p>The fellowship, the open evidence studio, and the impact lab.</p>
+          <p><a href="programs.html" data-transition>See our programs</a></p>
         </article>
         <article class="card reveal">
-          <h3>Approach</h3>
-          <p>Undergraduate collaboration, applied methods, and transparent communication of real-world implications.</p>
+          <h3>Open science</h3>
+          <p>Our data principles, research standards, and reuse terms.</p>
+          <p><a href="open-science.html" data-transition>How we work in the open</a></p>
         </article>
       </section>
     </div>
   </main>
 
+  <!-- footer:start -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-row">
@@ -75,20 +127,32 @@
         <span class="dot">&middot;</span>
         <a href="about.html">About</a>
         <span class="dot">&middot;</span>
-        <a href="team.html">Team</a>
+        <a href="programs.html">Programs</a>
         <span class="dot">&middot;</span>
         <a href="publications.html">Publications</a>
         <span class="dot">&middot;</span>
+        <a href="open-science.html">Open Science</a>
+        <span class="dot">&middot;</span>
+        <a href="team.html">Team</a>
+        <span class="dot">&middot;</span>
         <a href="events.html">Events</a>
+      </div>
+      <div class="footer-row footer-row--secondary">
+        <a href="join.html">Join</a>
+        <span class="dot">&middot;</span>
+        <a href="partner.html">Partner</a>
+        <span class="dot">&middot;</span>
+        <a href="support.html">Support</a>
         <span class="dot">&middot;</span>
         <a href="contact.html">Connect</a>
         <span class="dot">&middot;</span>
-        <a href="contact-us.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
         <span class="dot">&middot;</span>
         <a href="https://www.linkedin.com/company/reach-equity-lab/" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </div>
   </footer>
+  <!-- footer:end -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Science | REACH Equity Lab</title>
+  <meta name="description" content="REACH data principles, research standards, and reuse and licensing terms. How we handle data, review analysis, and release reproducible work." />
+  <link rel="canonical" href="https://reachequitylab.com/open-science.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="REACH Equity Lab" />
+  <meta property="og:title" content="Open Science | REACH Equity Lab" />
+  <meta property="og:description" content="REACH data principles, research standards, and reuse and licensing terms. How we handle data, review analysis, and release reproducible work." />
+  <meta property="og:url" content="https://reachequitylab.com/open-science.html" />
+  <meta property="og:image" content="https://reachequitylab.com/public/reach-banner.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Open Science | REACH Equity Lab" />
+  <meta name="twitter:description" content="REACH data principles, research standards, and reuse and licensing terms. How we handle data, review analysis, and release reproducible work." />
+  <meta name="twitter:image" content="https://reachequitylab.com/public/reach-banner.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/jpeg" href="/public/reach-icon.jpg" />
+  <link rel="apple-touch-icon" href="/public/reach-icon.jpg" />
+  <meta name="theme-color" content="#113b78" />
+</head>
+<body>
+  <!-- header:start -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" data-transition>
+        <img src="/public/icon-banner-transparent.png" alt="REACH Equity Lab" class="brand-logo" />
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="about.html" data-transition>About Us</a>
+        <a href="programs.html" data-transition>Programs</a>
+        <a href="publications.html" data-transition>Publications</a>
+        <a href="open-science.html" class="active" data-transition>Open Science</a>
+        <a href="team.html" data-transition>Team</a>
+        <a href="events.html" data-transition>Events</a>
+        <a href="contact.html" data-transition>Connect</a>
+        <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main" class="section">
+    <div class="container narrow reveal">
+      <h1>Open science</h1>
+      <p>
+        Research that cannot be checked is not much use to anyone. These are the standards REACH work is
+        held to, from where a dataset is stored through to how a release is licensed.
+      </p>
+
+      <h2 class="section-label reveal">Data principles</h2>
+      <p>
+        A code repository is not a data warehouse. Where a dataset lives depends on what it is and what
+        we are legally allowed to do with it.
+      </p>
+      <div class="spec-table reveal">
+        <table>
+          <caption>Where each kind of material is stored</caption>
+          <thead>
+            <tr><th scope="col">Material</th><th scope="col">Storage</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Analysis code</th><td>Public code repository</td></tr>
+            <tr><th scope="row">Protocols and documentation</th><td>Public code repository</td></tr>
+            <tr><th scope="row">Small openly licensed derived files</th><td>Public code repository</td></tr>
+            <tr><th scope="row">Raw government data</th><td>Left with the original custodian, retrieved by a download script</td></tr>
+            <tr><th scope="row">Large public releases</th><td>Zenodo, OSF, Dataverse, or an institutional repository</td></tr>
+            <tr><th scope="row">Restricted data</th><td>Approved institutional storage only</td></tr>
+            <tr><th scope="row">Partner confidential files</th><td>Approved restricted drive</td></tr>
+            <tr><th scope="row">Credentials</th><td>A password manager or repository secrets, never in a file</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        When we cannot redistribute a dataset, we publish the download script, the source URL, a checksum,
+        and the instructions to rebuild it. That keeps the analysis reproducible without republishing data
+        we have no right to move.
+      </p>
+
+      <h2 class="section-label reveal">Research standards</h2>
+      <ul class="standards-list reveal">
+        <li><strong>Protocol first.</strong> A written protocol and analysis plan are recorded before analysis begins.</li>
+        <li><strong>Reporting guidelines.</strong> Each study follows the reporting guideline appropriate to its design.</li>
+        <li><strong>Independent methods review.</strong> Analytical code is approved by a reviewer who did not write it.</li>
+        <li><strong>Reproducibility check before release.</strong> A separate reviewer re-runs the analysis end to end before anything is made public.</li>
+        <li><strong>Decision log.</strong> Analytic decisions and the reasons for them are recorded as the project runs, not reconstructed afterwards.</li>
+        <li><strong>Contribution matrix.</strong> Every contributor's role is recorded against CRediT categories, and authorship follows ICMJE criteria.</li>
+        <li><strong>No human subjects.</strong> The current portfolio uses public aggregate data, government statistical tables, policy documents, and openly licensed non-identifiable sources. It involves no participant recruitment and no identifiable data.</li>
+      </ul>
+
+      <h2 class="section-label reveal">Reuse and licensing</h2>
+      <p>
+        Each release carries an explicit license, a citation file, and a version. Where a release is
+        archived, the DOI and version are recorded in the project README so a reader can cite the exact
+        state of the work they used.
+      </p>
+      <p class="note-inline">
+        Our public code repositories will be linked here once the first release is published. Until then
+        there is nothing public to point you at, and we would rather say so than link an empty page.
+      </p>
+    </div>
+  </main>
+
+  <!-- footer:start -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-row">
+        <span>&copy; <span id="year"></span> REACH Equity Lab</span>
+        <span class="dot">&middot;</span>
+        <a href="about.html">About</a>
+        <span class="dot">&middot;</span>
+        <a href="programs.html">Programs</a>
+        <span class="dot">&middot;</span>
+        <a href="publications.html">Publications</a>
+        <span class="dot">&middot;</span>
+        <a href="open-science.html">Open Science</a>
+        <span class="dot">&middot;</span>
+        <a href="team.html">Team</a>
+        <span class="dot">&middot;</span>
+        <a href="events.html">Events</a>
+      </div>
+      <div class="footer-row footer-row--secondary">
+        <a href="join.html">Join</a>
+        <span class="dot">&middot;</span>
+        <a href="partner.html">Partner</a>
+        <span class="dot">&middot;</span>
+        <a href="support.html">Support</a>
+        <span class="dot">&middot;</span>
+        <a href="contact.html">Connect</a>
+        <span class="dot">&middot;</span>
+        <a href="privacy.html">Privacy</a>
+        <span class="dot">&middot;</span>
+        <a href="https://www.linkedin.com/company/reach-equity-lab/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+  <!-- footer:end -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

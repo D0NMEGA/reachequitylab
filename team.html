@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team | REACH Equity Lab</title>
+  <title>Our Team | REACH Equity Lab</title>
+  <meta name="description" content="The people behind REACH Equity Lab: leadership and researchers, with their backgrounds and professional profiles." />
+  <link rel="canonical" href="https://reachequitylab.com/team.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="REACH Equity Lab" />
+  <meta property="og:title" content="Our Team | REACH Equity Lab" />
+  <meta property="og:description" content="The people behind REACH Equity Lab: leadership and researchers, with their backgrounds and professional profiles." />
+  <meta property="og:url" content="https://reachequitylab.com/team.html" />
+  <meta property="og:image" content="https://reachequitylab.com/public/reach-banner.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Our Team | REACH Equity Lab" />
+  <meta name="twitter:description" content="The people behind REACH Equity Lab: leadership and researchers, with their backgrounds and professional profiles." />
+  <meta name="twitter:image" content="https://reachequitylab.com/public/reach-banner.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -13,6 +25,8 @@
   <meta name="theme-color" content="#113b78" />
 </head>
 <body>
+  <!-- header:start -->
+  <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html" data-transition>
@@ -20,17 +34,20 @@
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="about.html" data-transition>About Us</a>
-        <a href="team.html" data-transition class="active">Team</a>
+        <a href="programs.html" data-transition>Programs</a>
         <a href="publications.html" data-transition>Publications</a>
+        <a href="open-science.html" data-transition>Open Science</a>
+        <a href="team.html" class="active" data-transition>Team</a>
         <a href="events.html" data-transition>Events</a>
         <a href="contact.html" data-transition>Connect</a>
         <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
       </nav>
-      <button class="menu-toggle" aria-label="Open menu">☰</button>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     </div>
   </header>
+  <!-- header:end -->
 
-  <main class="section">
+  <main id="main" class="section">
     <div class="container">
       <div class="section-head reveal">
         <h1>Our Team</h1>
@@ -38,27 +55,31 @@
       </div>
 
       <h2 class="section-label reveal">Leadership</h2>
-      <section class="team-grid">
-        <article class="team-card reveal">
+      <section class="team-grid team-grid--leadership">
+        <article class="team-card team-card--clickable reveal"
+          data-name="Vibhu Kanna"
+          data-role="Founder &amp; President"
+          data-photo="/public/headshots/team/Vibhu-Kanna.jpg"
+          data-linkedin="https://www.linkedin.com/in/vibhu-kanna-63a05b25a/"
+          data-bio="Vibhu Kanna, from Houston, Texas, is a sophomore studying Biomedical Engineering at the University of Texas at Austin. Born in India, Vibhu's early exposure to healthcare disparities sparked his interest in understanding how systems-level factors shape patient outcomes. His research at Boston Children's Hospital and Harvard Medical School focuses on developing computational tools for spatial omics analysis in cardiovascular disease, while at UT Austin he studies kidneys using ultrasound in the Translational Cardiovascular Imaging Lab and contributes to a pediatric congenital heart surgery training tool. Driven by a passion for cardiology and the social determinants that influence cardiovascular health, Vibhu aspires to become a physician-scientist bridging clinical care with population-level research. He co-founded REACH Equity Lab to deepen his understanding of health disparities research, an area that fascinated him but remained underexplored in his formal coursework, where he applies rigorous methods to questions of equity and access. Beyond the lab, Vibhu enjoys watching football (soccer), spending time with family, and exploring Houston's diverse food scene.">
           <img src="/public/headshots/team/Vibhu-Kanna.jpg" alt="Vibhu Kanna" onerror="this.src='/public/headshots/team/placeholder.svg'" />
           <div class="team-card-body">
             <h3>Vibhu Kanna</h3>
             <p>Founder &amp; President</p>
           </div>
-          <a class="team-overlay" href="https://www.linkedin.com/in/vibhu-kanna-63a05b25a/" target="_blank" rel="noreferrer" aria-label="Vibhu Kanna LinkedIn">
-            <img src="/public/icons/linkedin.svg" alt="LinkedIn" />
-          </a>
         </article>
 
-        <article class="team-card reveal">
+        <article class="team-card team-card--clickable reveal"
+          data-name="Donovan Santine"
+          data-role="Co-Founder"
+          data-photo="/public/headshots/team/Donovan-Santine.jpg"
+          data-linkedin="https://www.linkedin.com/in/donovan-santine/"
+          data-bio="Donovan Santine is a second-year Biomedical Engineering Honors student in the Cockrell School of Engineering at the University of Texas at Austin, concentrating in Computational Biomedical Engineering. His research interests lie at the convergence of brain-computer interfaces and AI agent orchestration, where he explores how coordinated networks of specialized AI agents can improve the adaptability, personalization, and real-time responsiveness of neural interface systems. As a co-founder of the REACH Equity Lab, Donovan is also deeply invested in leveraging computational methods to advance health equity; his current work includes ToxiMap, a machine learning project that uses national biomarker survey data to characterize environmental exposure patterns across populations. Across all of his work, he is motivated by the belief that powerful computational tools should be built not only for performance, but with an intentional focus on equitable access and impact.">
           <img src="/public/headshots/team/Donovan-Santine.jpg" alt="Donovan Santine" onerror="this.src='/public/headshots/team/placeholder.svg'" />
           <div class="team-card-body">
             <h3>Donovan Santine</h3>
             <p>Co-Founder</p>
           </div>
-          <a class="team-overlay" href="https://www.linkedin.com/in/donovan-santine/" target="_blank" rel="noreferrer" aria-label="Donovan Santine LinkedIn">
-            <img src="/public/icons/linkedin.svg" alt="LinkedIn" />
-          </a>
         </article>
 
         <article class="team-card reveal">
@@ -72,6 +93,30 @@
           </a>
         </article>
       </section>
+
+      <!-- Bio Modal -->
+      <div class="bio-modal-backdrop" id="bioModal">
+        <div class="bio-modal">
+          <button class="bio-modal-close" id="bioModalClose" aria-label="Close">&times;</button>
+          <div class="bio-modal-header">
+            <div class="bio-modal-identity">
+              <img class="bio-modal-photo" id="bioModalPhoto" src="" alt="" />
+              <div>
+                <h2 class="bio-modal-name" id="bioModalName"></h2>
+                <p class="bio-modal-role" id="bioModalRole"></p>
+              </div>
+            </div>
+            <div class="bio-modal-socials" id="bioModalSocials">
+              <a id="bioModalLinkedIn" href="" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <img src="/public/icons/linkedin.svg" alt="LinkedIn" />
+              </a>
+            </div>
+          </div>
+          <div class="bio-modal-body">
+            <p id="bioModalBio"></p>
+          </div>
+        </div>
+      </div>
 
       <h2 class="section-label reveal">Researchers</h2>
       <section class="team-grid">
@@ -122,6 +167,7 @@
     </div>
   </main>
 
+  <!-- footer:start -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-row">
@@ -129,20 +175,32 @@
         <span class="dot">&middot;</span>
         <a href="about.html">About</a>
         <span class="dot">&middot;</span>
-        <a href="team.html">Team</a>
+        <a href="programs.html">Programs</a>
         <span class="dot">&middot;</span>
         <a href="publications.html">Publications</a>
         <span class="dot">&middot;</span>
+        <a href="open-science.html">Open Science</a>
+        <span class="dot">&middot;</span>
+        <a href="team.html">Team</a>
+        <span class="dot">&middot;</span>
         <a href="events.html">Events</a>
+      </div>
+      <div class="footer-row footer-row--secondary">
+        <a href="join.html">Join</a>
+        <span class="dot">&middot;</span>
+        <a href="partner.html">Partner</a>
+        <span class="dot">&middot;</span>
+        <a href="support.html">Support</a>
         <span class="dot">&middot;</span>
         <a href="contact.html">Connect</a>
         <span class="dot">&middot;</span>
-        <a href="contact-us.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
         <span class="dot">&middot;</span>
         <a href="https://www.linkedin.com/company/reach-equity-lab/" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </div>
   </footer>
+  <!-- footer:end -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>

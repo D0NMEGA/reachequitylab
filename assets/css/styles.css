@@ -230,7 +230,7 @@ h3 {
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(28, 167, 166, 0.82) 0%, rgba(31, 58, 95, 0.88) 100%);
+  background: linear-gradient(160deg, #1ca7a6 0%, var(--blue-900) 100%);
   z-index: 1;
 }
 
@@ -426,6 +426,10 @@ h3 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.team-grid--leadership {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .team-card {
   position: relative;
   border-radius: 16px;
@@ -460,6 +464,187 @@ h3 {
   margin: 6px 0 0;
   color: var(--text-700);
   font-size: 0.92rem;
+}
+
+.team-card--clickable {
+  cursor: pointer;
+}
+
+/* Bio Modal */
+.bio-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 25, 50, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+}
+
+.bio-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bio-modal {
+  position: relative;
+  background: var(--white);
+  border-radius: 24px;
+  width: min(780px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 48px 52px 52px;
+  box-shadow:
+    0 0 0 1px rgba(17, 59, 120, 0.08),
+    0 8px 24px rgba(17, 59, 120, 0.1),
+    0 32px 80px rgba(0, 0, 0, 0.18);
+  transform: translateY(20px) scale(0.98);
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bio-modal-backdrop.active .bio-modal {
+  transform: translateY(0) scale(1);
+}
+
+.bio-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: var(--blue-50, #eef3fb);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--text-700);
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+
+.bio-modal-close:hover {
+  background: var(--blue-900);
+  color: var(--white);
+  border-color: var(--blue-900);
+}
+
+.bio-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bio-modal-identity {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.bio-modal-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 3px solid var(--border);
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.bio-modal-name {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--blue-900);
+  letter-spacing: -0.01em;
+}
+
+.bio-modal-role {
+  margin: 6px 0 0;
+  font-size: 1rem;
+  color: var(--teal-500);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.bio-modal-socials {
+  display: flex;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.bio-modal-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--blue-900);
+  transition: background 200ms, transform 200ms;
+}
+
+.bio-modal-socials a:hover {
+  background: var(--teal-500);
+  transform: translateY(-2px);
+}
+
+.bio-modal-socials a img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.bio-modal-body p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-700);
+  max-width: 65ch;
+}
+
+@media (max-width: 640px) {
+  .bio-modal {
+    padding: 32px 24px 36px;
+    border-radius: 20px;
+  }
+
+  .bio-modal-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bio-modal-identity {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .bio-modal-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .bio-modal-name {
+    font-size: 1.4rem;
+  }
+
+  .bio-modal-body p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
 }
 
 .team-overlay {
@@ -781,4 +966,293 @@ a:hover {
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+/* ---------------------------------------------------------------
+   Components added for the expanded sitemap (programs, open science,
+   partner, join, support, privacy, 404).
+   --------------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--blue-900);
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 10px 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* Visible focus ring across interactive elements. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--teal-500);
+  outline-offset: 2px;
+}
+
+.lead-statement {
+  font-size: 1.15rem;
+  color: var(--blue-700);
+  border-left: 4px solid var(--teal-500);
+  padding-left: 18px;
+  margin: 0 0 8px;
+}
+
+.note-inline {
+  background: var(--blue-200);
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: var(--text-700);
+  font-size: 0.95rem;
+}
+
+.page-meta {
+  color: var(--text-500);
+  font-size: 0.9rem;
+  margin-top: -8px;
+}
+
+/* Numbered process: home "How REACH works", about "Theory of change". */
+.process-flow {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.process-flow > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 56px;
+}
+
+.process-flow > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--blue-900);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.process-flow > li p {
+  margin: 2px 0 0;
+  color: var(--text-700);
+}
+
+.process-step {
+  font-weight: 700;
+  color: var(--blue-900);
+}
+
+@media (min-width: 901px) {
+  .process-flow {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .process-flow > li {
+    padding: 52px 0 0;
+  }
+}
+
+/* Standards, principles, and commitments. */
+.standards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.standards-list > li {
+  padding: 14px 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--teal-500);
+  border-radius: 10px;
+  color: var(--text-700);
+}
+
+.standards-list strong {
+  color: var(--blue-900);
+}
+
+/* Impact Lab pilot criteria. */
+.pilot-criteria {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pilot-criteria > li {
+  background: var(--blue-200);
+  color: var(--blue-900);
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 999px;
+}
+
+/* Participation ladder on the join page. */
+.ladder {
+  list-style: none;
+  counter-reset: rung;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.ladder > li {
+  counter-increment: rung;
+  position: relative;
+  padding: 18px 22px 18px 66px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(31, 58, 95, 0.08);
+}
+
+.ladder > li::before {
+  content: counter(rung);
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--teal-500);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.ladder h3 {
+  margin: 0 0 4px;
+  color: var(--blue-900);
+}
+
+.ladder p {
+  margin: 0;
+  color: var(--text-700);
+}
+
+/* Data tables: fellowship parameters, registry rule, partner categories. */
+.spec-table {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--white);
+}
+
+.spec-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+
+.spec-table caption {
+  text-align: left;
+  padding: 14px 18px 0;
+  color: var(--text-500);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.spec-table th,
+.spec-table td {
+  padding: 12px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.spec-table thead th {
+  color: var(--blue-900);
+  font-weight: 700;
+  background: var(--blue-200);
+}
+
+.spec-table tbody th {
+  color: var(--blue-900);
+  font-weight: 600;
+  width: 34%;
+}
+
+.spec-table td {
+  color: var(--text-700);
+}
+
+.spec-table tr:last-child th,
+.spec-table tr:last-child td {
+  border-bottom: none;
+}
+
+.footer-row--secondary {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* The nav carries eight items, so it needs the mobile menu sooner. */
+@media (max-width: 1100px) {
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .site-nav {
+    display: none;
+    width: 100%;
+    padding: 8px 0 12px;
+    border-top: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  .site-header.open .nav-wrap {
+    flex-wrap: wrap;
+  }
+
+  .site-header.open .site-nav {
+    display: flex;
+  }
+}
+
+.form-privacy {
+  font-size: 0.85rem;
+  color: var(--text-500);
+  margin: 4px 0 0;
+}
+
+/* Scroll shadow on the right edge so a cut-off table reads as scrollable.
+   The two linear-gradients are the "cover" panes pinned to each edge; the
+   radial-gradients are the shadows they uncover as the table scrolls. */
+.spec-table {
+  background-image:
+    linear-gradient(to right, var(--white) 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(to left, var(--white) 30%, rgba(255, 255, 255, 0)),
+    radial-gradient(farthest-side at 0 50%, rgba(31, 58, 95, 0.18), rgba(31, 58, 95, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(31, 58, 95, 0.18), rgba(31, 58, 95, 0));
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-repeat: no-repeat;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
