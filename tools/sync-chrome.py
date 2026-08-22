@@ -19,6 +19,17 @@ SKIP = {"r.html"}
 BLOCKS = (("header", "header.html"), ("footer", "footer.html"))
 
 
+def read(path: pathlib.Path) -> str:
+    """Read without translating newlines, so CRLF files stay CRLF."""
+    with open(path, newline="") as handle:
+        return handle.read()
+
+
+def write(path: pathlib.Path, text: str) -> None:
+    with open(path, "w", newline="") as handle:
+        handle.write(text)
+
+
 def active_nav(header: str, page: str) -> str:
     """Mark the nav link pointing at `page` as active, leaving the CTA styled."""
 
@@ -34,13 +45,13 @@ def active_nav(header: str, page: str) -> str:
 
 
 def main() -> int:
-    partials = {name: (PARTIALS / f).read_text() for name, f in BLOCKS}
+    partials = {name: read(PARTIALS / f) for name, f in BLOCKS}
     changed = []
 
     for path in sorted(ROOT.glob("*.html")):
         if path.name in SKIP:
             continue
-        html = original = path.read_text()
+        html = original = read(path)
 
         for name in partials:
             start, end = f"<!-- {name}:start -->", f"<!-- {name}:end -->"
@@ -58,7 +69,7 @@ def main() -> int:
             )
 
         if html != original:
-            path.write_text(html)
+            write(path, html)
             changed.append(path.name)
 
     print(f"synced {len(changed)} page(s): {', '.join(changed) or 'none'}")
