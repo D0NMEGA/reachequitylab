@@ -1,17 +1,28 @@
-# Cloudflare Pages defaults static assets to Cache-Control: max-age=14400.
-# None of these filenames are content-hashed, so for four hours after a deploy
-# a browser can keep serving the previous CSS or JS. That is how the fixed
-# mobile menu shipped and still looked broken in Chrome while working in Safari
-# on the same iPhone: identical engine (Chrome on iOS is WebKit), separate
-# HTTP caches, and only one of them had refetched the stylesheet.
+# NOTE: this file is currently INERT, and the reason matters.
 #
-# Pages answers every request with an ETag and a 304 when nothing changed, so
-# revalidating each time costs one round trip and no bytes.
+# Cloudflare's zone-level Browser Cache TTL (Caching > Configuration) is set to
+# the 4 hour default, and it overrides origin Cache-Control for static file
+# extensions. Proof: /assets/* below asks for max-age=0 and /public/* asks for
+# 3600, and both come back as max-age=14400, while .html and .xml (not static
+# extensions) pass through untouched at max-age=0. So the value is not coming
+# from here.
+#
+# These rules take effect the moment Browser Cache TTL is switched to
+# "Respect Existing Headers". Until then, a browser can serve a four-hour-old
+# CSS file after a deploy, which is how the mobile menu fix shipped and still
+# looked broken in Chrome while working in Safari on the same iPhone: Chrome on
+# iOS is WebKit, so the engine was identical and only the HTTP cache differed.
+#
+# The ?v= token on the asset URLs in each page is the workaround that does not
+# depend on the dashboard. Bump it on any deploy that changes CSS or JS, until
+# the setting above is changed.
+#
+# Pages answers with an ETag and a 304 when nothing changed, so revalidating
+# every request costs one round trip and no bytes.
 
 /assets/*
   Cache-Control: public, max-age=0, must-revalidate
 
-# Images are cosmetic when stale, so they get an hour rather than a round trip
-# on every page view. Still well short of the four-hour default.
+# Images are cosmetic when stale, so an hour rather than a round trip per view.
 /public/*
   Cache-Control: public, max-age=3600, must-revalidate
