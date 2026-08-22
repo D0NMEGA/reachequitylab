@@ -787,26 +787,6 @@ a:hover {
   .mini-grid {
     grid-template-columns: 1fr;
   }
-
-  .menu-toggle {
-    display: inline-block;
-  }
-
-  .site-nav {
-    display: none;
-    width: 100%;
-    padding: 8px 0 12px;
-    border-top: 1px solid var(--border);
-    background: var(--white);
-  }
-
-  .site-header.open .nav-wrap {
-    flex-wrap: wrap;
-  }
-
-  .site-header.open .site-nav {
-    display: flex;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1063,23 +1043,49 @@ textarea:focus-visible {
 /* The nav carries eight items, so it needs the mobile menu sooner. */
 @media (max-width: 1100px) {
   .menu-toggle {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Brand and toggle keep the first row to themselves; the panel is ordered
+     last so it wraps onto a row of its own underneath them. */
+  .nav-wrap {
+    flex-wrap: wrap;
+    row-gap: 0;
   }
 
   .site-nav {
     display: none;
+    order: 3;
     width: 100%;
-    padding: 8px 0 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 6px 0 14px;
     border-top: 1px solid var(--border);
-    background: var(--white);
-  }
-
-  .site-header.open .nav-wrap {
-    flex-wrap: wrap;
+    /* Deliberately no background: the panel sits inside the header's glass.
+       A solid fill here put white link text on a white sheet. */
+    max-height: calc(100vh - 72px);
+    max-height: calc(100dvh - 72px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .site-header.open .site-nav {
     display: flex;
+  }
+
+  .site-nav a {
+    padding: 13px 14px;
+    border-radius: 10px;
+  }
+
+  .site-nav a.nav-cta {
+    margin-top: 8px;
+    text-align: center;
   }
 }
 
