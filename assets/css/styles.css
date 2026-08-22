@@ -1386,7 +1386,12 @@ a.btn.btn-white:hover { background: var(--accent); color: #06162c; }
 .spec-table th, .spec-table td { border-bottom-color: rgba(255, 255, 255, 0.10); }
 
 /* ---- team and modal ---- */
-.team-card img { opacity: 0.94; }
+.team-card img {
+  opacity: 0.94;
+  /* The placeholder shown while a headshot loads was a light blue, which
+     flashed white against the dark ground. Match the studio grey instead. */
+  background: #4a4b4f;
+}
 .team-card-body h3 { color: #fff; }
 .team-card-body p { color: rgba(255, 255, 255, 0.75); }
 /* ---- forms ---- */
