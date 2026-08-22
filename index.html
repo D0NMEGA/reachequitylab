@@ -18,7 +18,7 @@
   <meta name="twitter:image" content="https://reachequitylab.com/public/reach-banner.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Schibsted+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="icon" type="image/jpeg" href="/public/reach-icon.jpg" />
   <link rel="apple-touch-icon" href="/public/reach-icon.jpg" />
@@ -49,15 +49,21 @@
   <main id="main">
     <section class="hero-video">
       <div class="hero-video-overlay"></div>
-      <div class="container hero-video-content reveal">
-        <h1>Where Research Meets Reach</h1>
-        <p>
-          REACH Equity Lab is focused on undergraduate research addressing health
-          disparities tied to racial, wage, and healthcare gaps.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-white" href="publications.html" data-transition>Explore Our Work</a>
-          <a class="btn btn-outline-white" href="about.html" data-transition>Learn More</a>
+      <div class="container hero-inner">
+        <div class="hero-video-content reveal">
+          <p class="hero-eyebrow">UT Austin</p>
+          <h1>Where Research Meets Reach</h1>
+          <p>
+            REACH Equity Lab is focused on undergraduate research addressing health
+            disparities tied to racial, wage, and healthcare gaps.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-white" href="publications.html" data-transition>Explore Our Work</a>
+            <a class="btn btn-outline-white" href="about.html" data-transition>Learn More</a>
+          </div>
+        </div>
+        <div class="hero-globe reveal">
+          <canvas id="globe" width="420" height="420" aria-hidden="true"></canvas>
         </div>
       </div>
     </section>
@@ -145,5 +151,6 @@
   </footer>
   <!-- footer:end -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/globe.js" defer></script>
 </body>
 </html>

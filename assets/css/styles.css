@@ -1,14 +1,38 @@
 :root {
-  --blue-900: #1f3a5f;
-  --blue-700: #163047;
-  --blue-500: #5fa8d3;
-  --blue-200: #eaf4fb;
-  --teal-500: #3ba99c;
-  --text-900: #1a1a1a;
-  --text-700: #4a4a4a;
-  --text-500: #6f7c8a;
+  /* Palette taken from the globe reference shot's own published swatches,
+     harmonised with the existing REACH teal. */
+  --navy-950: #03186b;
+  --blue-800: #0329a2;
+  --blue-600: #1852d3;
+  --blue-400: #6593c4;
+  --slate-400: #9ea8b4;
+  --mist: #eef1f3;
+
+  /* Names kept from the previous sheet so existing rules inherit the new palette. */
+  --blue-900: #03186b;
+  --blue-700: #0329a2;
+  --blue-500: #1852d3;
+  --blue-200: #e8eef6;
+  --teal-500: #2f8d82;
+  --text-900: #1a2230;
+  --text-700: #46566b;
+  --text-500: #6b7a8c;
   --white: #ffffff;
-  --border: #e2e8f0;
+  --border: rgba(3, 24, 107, 0.10);
+
+  /* Liquid glass */
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-strong: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(255, 255, 255, 0.8);
+  --glass-blur: blur(18px) saturate(180%);
+  --glass-shadow:
+    0 1px 1px rgba(3, 24, 107, 0.04),
+    0 8px 24px -12px rgba(3, 24, 107, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", system-ui, sans-serif;
+  --font-body: "Source Sans 3", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 * {
@@ -22,9 +46,9 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   color: var(--text-900);
-  background: var(--white);
+  background: #f2f6fa;
   line-height: 1.6;
   opacity: 0;
   transform: translateY(10px);
@@ -162,7 +186,10 @@ body.page-leave {
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  line-height: 1.15;
   margin-top: 0;
   color: var(--blue-900);
 }
@@ -564,7 +591,7 @@ h3 {
 
 .bio-modal-name {
   margin: 0;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--blue-900);
@@ -1255,4 +1282,363 @@ textarea:focus-visible {
   background-repeat: no-repeat;
   background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
   background-attachment: local, local, scroll, scroll;
+}
+
+/* ===============================================================
+   Liquid glass layer
+   Panels are translucent and blurred, so they need something with
+   structure behind them. The ground below supplies that: a cool
+   base wash, three soft colour blooms, and a fine lattice.
+   =============================================================== */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(56vw 46vw at 10% 6%, rgba(24, 82, 211, 0.28), transparent 64%),
+    radial-gradient(50vw 42vw at 94% 22%, rgba(47, 141, 130, 0.24), transparent 62%),
+    radial-gradient(64vw 54vw at 66% 92%, rgba(3, 41, 162, 0.26), transparent 66%),
+    radial-gradient(44vw 40vw at 30% 68%, rgba(101, 147, 196, 0.22), transparent 62%),
+    linear-gradient(168deg, #eef3f9 0%, #dfe8f4 54%, #e7ecf1 100%);
+}
+
+/* Fine lattice. Kept very low contrast so it reads as texture, not pattern. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(3, 24, 107, 0.13) 1.1px, transparent 1.1px),
+    linear-gradient(rgba(3, 24, 107, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(3, 24, 107, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px, 96px 96px, 96px 96px;
+  background-position: 0 0, 0 0, 0 0;
+}
+
+/* ---- the glass recipe, shared ---- */
+.card,
+.spec-table,
+.empty-state,
+.panel,
+.standards-list > li,
+.ladder > li,
+.team-card,
+.note-inline,
+.stat-card,
+.connect-block,
+.form-centered .card {
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Browsers without backdrop-filter get an opaque panel instead of a
+   washed-out one that cannot be read. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card,
+  .spec-table,
+  .empty-state,
+  .panel,
+  .standards-list > li,
+  .ladder > li,
+  .team-card,
+  .note-inline,
+  .stat-card,
+  .connect-block,
+  .form-centered .card {
+    background: rgba(255, 255, 255, 0.94);
+  }
+}
+
+.card {
+  border-radius: 16px;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 2px 2px rgba(3, 24, 107, 0.05),
+    0 18px 40px -18px rgba(3, 24, 107, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.note-inline {
+  border-left: 3px solid var(--teal-500);
+}
+
+.standards-list > li {
+  border-left: 3px solid var(--teal-500);
+}
+
+/* Alternating bands become a translucent wash rather than a solid fill. */
+.bg-soft {
+  background: rgba(255, 255, 255, 0.26);
+  border-block: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* ---- header ---- */
+.site-header {
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 24px -12px rgba(3, 24, 107, 0.35);
+}
+
+.site-nav a {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.site-nav a.nav-cta {
+  background: var(--blue-600);
+  box-shadow: 0 6px 16px -8px rgba(24, 82, 211, 0.9);
+}
+
+.site-nav a.nav-cta:hover,
+.site-nav a.nav-cta.active {
+  background: var(--blue-800);
+}
+
+/* ---- hero ---- */
+.hero-video {
+  min-height: 560px;
+  isolation: isolate;
+}
+
+.hero-video-overlay {
+  background:
+    radial-gradient(60% 70% at 78% 42%, rgba(24, 82, 211, 0.55), transparent 70%),
+    linear-gradient(150deg, #0a2f7a 0%, #03186b 58%, #021047 100%);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-video-content {
+  max-width: 34rem;
+  padding: 72px 0;
+}
+
+.hero-video-content h1 {
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0 0 14px;
+}
+
+.hero-globe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-globe canvas {
+  width: min(420px, 100%);
+  height: auto;
+  aspect-ratio: 1;
+  display: block;
+  filter: drop-shadow(0 30px 60px rgba(2, 16, 71, 0.6));
+}
+
+/* Buttons in the hero pick up the glass treatment. */
+.btn-outline-white {
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  background: var(--blue-600);
+  box-shadow: 0 8px 20px -10px rgba(24, 82, 211, 0.95);
+}
+
+.btn:hover {
+  background: var(--blue-800);
+}
+
+.btn-white {
+  color: var(--navy-950);
+}
+
+/* ---- type detail ---- */
+.section-label {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-size: 1.15rem;
+  border-bottom-width: 2px;
+}
+
+.kicker,
+.spec-table caption {
+  font-family: var(--font-mono);
+}
+
+.spec-table {
+  border-radius: 14px;
+}
+
+.spec-table thead th {
+  background: rgba(24, 82, 211, 0.08);
+}
+
+/* The scroll shadow needs to sit on glass, not on solid white. */
+.spec-table {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(to left, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0)),
+    radial-gradient(farthest-side at 0 50%, rgba(3, 24, 107, 0.16), rgba(3, 24, 107, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(3, 24, 107, 0.16), rgba(3, 24, 107, 0));
+}
+
+/* ---- footer ---- */
+.site-footer {
+  background: linear-gradient(160deg, #03186b 0%, #021047 100%);
+}
+
+/* ---- team ---- */
+.team-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.bio-modal {
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-edge);
+}
+
+.bio-modal-backdrop {
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* ---- forms ---- */
+.contact-form input,
+.contact-form textarea {
+  font-family: var(--font-body);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--glass-edge);
+  border-radius: 10px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--blue-600);
+  outline-offset: 1px;
+  background: var(--white);
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .hero-video-content {
+    padding: 56px 0 8px;
+    max-width: none;
+  }
+
+  .hero-globe {
+    padding-bottom: 48px;
+  }
+
+  .hero-globe canvas {
+    width: min(300px, 72vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* .btn-white sits inside the hero and must win over the generic .btn fill. */
+a.btn.btn-white {
+  background: var(--white);
+  color: var(--navy-950);
+  box-shadow: 0 8px 22px -10px rgba(2, 16, 71, 0.9);
+}
+
+a.btn.btn-white:hover {
+  background: var(--mist);
+  color: var(--navy-950);
+}
+
+/* soft atmosphere behind the globe */
+.hero-globe {
+  position: relative;
+}
+
+.hero-globe::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(101, 147, 196, 0.35), rgba(101, 147, 196, 0) 72%);
+  pointer-events: none;
+}
+
+.hero-globe canvas {
+  position: relative;
+}
+
+/* The LinkedIn asset is already a rounded white tile with the brand glyph, so
+   the wrapper must not tint it. brightness(0) invert(1) was flattening the
+   whole tile, including its background rect, into a solid white square. */
+.bio-modal-socials a {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.bio-modal-socials a:hover {
+  background: transparent;
+  transform: translateY(-2px);
+}
+
+.bio-modal-socials a img {
+  width: 34px;
+  height: 34px;
+  filter: none;
+  border-radius: 8px;
 }
