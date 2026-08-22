@@ -1779,7 +1779,13 @@ h1 {
   filter: brightness(0) invert(1);
 }
 
-/* ---- affiliation marquee ---- */
+/* ---- affiliation marquee ----
+   The marquee images deliberately carry no loading="lazy". The duplicate
+   row starts off-screen to the right and only a transform brings it in,
+   which native lazy-loading does not observe: on production the second row
+   loaded one logo at a time over the first pass, so the loop visibly had
+   holes in it. Both rows point at the same URLs, so eager loading costs no
+   extra bytes. */
 .marquee {
   position: relative;
   overflow: hidden;
@@ -1837,6 +1843,21 @@ h1 {
    on the raw pixel height. */
 .org-mark--tall {
   height: 34px;
+}
+
+/* Most of these marks are line art on a transparent ground, so flattening them
+   to white keeps every stroke. Harvard's shield is built the other way round:
+   a solid crimson field with the three books knocked out of it in white.
+   brightness(0) turns field and knockout alike to black, and invert then makes
+   both white, so the shield arrives as a featureless white blob.
+
+   Inverting the luminance instead keeps the relationship: the crimson field is
+   mid-dark so it comes back light, the white knockouts are the brightest thing
+   in the artwork so they come back near-black and read as holes against the
+   navy. brightness only lifts the field, because it scales toward zero and the
+   knockouts are already there. */
+.org-mark--knockout {
+  filter: grayscale(1) invert(1) brightness(1.12);
 }
 
 @media (prefers-reduced-motion: reduce) {
