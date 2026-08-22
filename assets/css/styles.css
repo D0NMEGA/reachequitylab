@@ -1725,3 +1725,172 @@ textarea:focus-visible {
     display: none;
   }
 }
+
+/* ===============================================================
+   DARK-GROUND CORRECTIONS
+
+   Two problems this fixes.
+
+   Colour: only --blue-900 was remapped to white when the theme went
+   dark. --blue-700, --blue-500 and --teal-500 kept their light-theme
+   values and are used as text in about thirty places, so anything
+   reading them rendered dark blue on dark blue. Remapped at the token
+   so every call site is corrected at once.
+
+   Rules: the underlines and left bars were a light-theme device. On a
+   photograph a hairline reads as a seam in the image rather than as
+   structure, so they come off and hierarchy is carried by size,
+   weight and space instead.
+   =============================================================== */
+
+:root {
+  --blue-700: #ffffff;
+  --blue-500: var(--accent);
+  --teal-500: var(--accent);
+  --blue-200: rgba(255, 255, 255, 0.10);
+}
+
+/* h3 carried a hardcoded light-theme slate. */
+h3 {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---- section headings ---- */
+/* Was an uppercase label with a 3px teal underline. Now a real
+   heading: sentence case, sized and weighted, separated by space. */
+.section-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: var(--ink);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 72px 0 16px;
+}
+
+/* :first-of-type was collapsing the gap wherever a section heading followed a
+   lead paragraph, which is every page. Only drop the margin when the heading
+   genuinely opens its container. */
+.section-label:first-of-type {
+  margin-top: 72px;
+}
+
+.section-label:first-child {
+  margin-top: 8px;
+}
+
+/* ---- lead paragraph ---- */
+/* Was deep blue behind a teal bar, which is the text that vanished. */
+.lead-statement {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink);
+  border-left: none;
+  padding-left: 0;
+  margin: 0 0 12px;
+}
+
+/* ---- callouts and list panels: glass alone, no coloured bar ---- */
+.note-inline,
+.standards-list > li {
+  border-left: 1px solid var(--glass-edge);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.note-inline {
+  padding: 18px 22px;
+  margin: 20px 0;
+}
+
+.standards-list strong,
+.acronym-list strong {
+  color: var(--ink);
+}
+
+.acronym-list li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ---- vertical rhythm ---- */
+h1 {
+  margin-bottom: 20px;
+}
+
+
+.spec-table {
+  margin: 24px 0 28px;
+}
+
+.standards-list {
+  margin: 20px 0 28px;
+}
+
+.empty-state {
+  margin-top: 32px;
+}
+
+.empty-state h2 {
+  color: var(--ink);
+}
+
+.empty-state p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.mini-grid {
+  margin-top: 32px;
+}
+
+/* ---- remaining light-theme leftovers ---- */
+.chip {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--ink);
+  border: 1px solid var(--glass-edge);
+}
+
+.stat-label,
+.stat-small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stat-number {
+  color: var(--ink);
+}
+
+.connect-block h2,
+.connect-label,
+.connect-social-link strong {
+  color: var(--ink);
+}
+
+.connect-detail,
+.connect-block > p,
+.connect-social-link span {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.connect-social-link {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-edge);
+}
+
+.connect-social-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.social-list a {
+  color: var(--accent);
+}
+
+.form-confirm {
+  color: var(--ink);
+}
+
+.events-empty-state {
+  color: rgba(255, 255, 255, 0.78);
+}
