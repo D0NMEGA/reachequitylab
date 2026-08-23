@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Schibsted+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260822f" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260823a" />
   <link rel="icon" type="image/jpeg" href="/public/reach-icon.jpg" />
   <link rel="apple-touch-icon" href="/public/reach-icon.jpg" />
   <meta name="theme-color" content="#113b78" />
@@ -34,11 +34,10 @@
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="about.html" data-transition>About Us</a>
+        <a href="index.html#chapters">Chapters</a>
         <a href="publications.html" data-transition>Publications</a>
-        <a href="open-science.html" class="active" data-transition>Open Science</a>
         <a href="team.html" data-transition>Team</a>
         <a href="events.html" data-transition>Events</a>
-        <a href="contact.html" data-transition>Connect</a>
         <a href="contact-us.html" data-transition class="nav-cta">Contact Us</a>
       </nav>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
@@ -66,14 +65,14 @@
             <tr><th scope="col">Material</th><th scope="col">Storage</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Analysis code</th><td>Public code repository</td></tr>
-            <tr><th scope="row">Protocols and documentation</th><td>Public code repository</td></tr>
-            <tr><th scope="row">Small openly licensed derived files</th><td>Public code repository</td></tr>
-            <tr><th scope="row">Raw government data</th><td>Left with the original custodian, retrieved by a download script</td></tr>
-            <tr><th scope="row">Large public releases</th><td>Zenodo, OSF, Dataverse, or an institutional repository</td></tr>
-            <tr><th scope="row">Restricted data</th><td>Approved institutional storage only</td></tr>
-            <tr><th scope="row">Partner confidential files</th><td>Approved restricted drive</td></tr>
-            <tr><th scope="row">Credentials</th><td>A password manager or repository secrets, never in a file</td></tr>
+            <tr><th scope="row">Analysis code</th><td data-label="Storage">Public code repository</td></tr>
+            <tr><th scope="row">Protocols and documentation</th><td data-label="Storage">Public code repository</td></tr>
+            <tr><th scope="row">Small openly licensed derived files</th><td data-label="Storage">Public code repository</td></tr>
+            <tr><th scope="row">Raw government data</th><td data-label="Storage">Left with the original custodian, retrieved by a download script</td></tr>
+            <tr><th scope="row">Large public releases</th><td data-label="Storage">Zenodo, OSF, Dataverse, or an institutional repository</td></tr>
+            <tr><th scope="row">Restricted data</th><td data-label="Storage">Approved institutional storage only</td></tr>
+            <tr><th scope="row">Partner confidential files</th><td data-label="Storage">Approved restricted drive</td></tr>
+            <tr><th scope="row">Credentials</th><td data-label="Storage">A password manager or repository secrets, never in a file</td></tr>
           </tbody>
         </table>
       </div>
@@ -132,7 +131,7 @@
     </div>
   </footer>
   <!-- footer:end -->
-  <script src="assets/js/main.js?v=20260822f"></script>
-  <script src="assets/js/silk.js?v=20260822f" defer></script>
+  <script src="assets/js/main.js?v=20260823a"></script>
+  <script src="assets/js/silk.js?v=20260823a" defer></script>
 </body>
 </html>

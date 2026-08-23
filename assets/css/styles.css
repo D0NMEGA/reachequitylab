@@ -2044,3 +2044,98 @@ h1 {
     padding: 20px;
   }
 }
+
+/* ---- data tables on a phone -------------------------------------------------
+   The table carried min-width: 480px inside a wrapper that is 357px on a 390px
+   handset, so a quarter of every row sat outside the visible area. It scrolled,
+   but with no affordance saying so it just read as truncated text: "permissi",
+   "A docum", "contribu".
+
+   Below 620px each row becomes its own block instead. The column headers move
+   into the cells via data-label, so nothing depends on a header row the reader
+   can no longer see. */
+@media (max-width: 620px) {
+  .spec-table {
+    overflow-x: visible;
+    border: none;
+    background: none;
+    border-radius: 0;
+  }
+
+  .spec-table table,
+  .spec-table tbody,
+  .spec-table tr,
+  .spec-table th,
+  .spec-table td {
+    display: block;
+    width: auto;
+    min-width: 0;
+  }
+
+  /* Off-screen rather than display:none, so the header text stays available
+     to a screen reader walking the table. */
+  .spec-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* A caption inside a display:block table shrink-wraps to its longest word,
+     which broke the label onto five lines. */
+  .spec-table caption {
+    display: block;
+    padding: 0 0 10px;
+  }
+
+  .spec-table tbody tr {
+    margin-bottom: 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--glass-edge);
+    border-radius: 14px;
+    background: var(--glass);
+    -webkit-backdrop-filter: var(--blur);
+    backdrop-filter: var(--blur);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-spec);
+  }
+
+  .spec-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .spec-table tbody th {
+    width: auto;
+    padding: 0 0 10px;
+    border-bottom: 1px solid var(--glass-edge);
+    margin-bottom: 10px;
+    font-size: 1.02rem;
+  }
+
+  .spec-table tbody td {
+    padding: 0 0 10px;
+    border-bottom: none;
+  }
+
+  .spec-table tbody td:last-child {
+    padding-bottom: 0;
+  }
+
+  .spec-table tbody td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+}
+
+/* The header is sticky, so an anchor jump would otherwise land with the
+   section heading tucked underneath it. */
+[id] {
+  scroll-margin-top: 88px;
+}
